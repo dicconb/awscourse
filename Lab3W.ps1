@@ -2,7 +2,7 @@
 
 aws ec2 describe-instances --filter 'Name=tag:Name,Values=Processor'
 
-#2.2.3 Refine description to include only VolumeId of Amazon EBS volume
+#2.#2.3 Refine description to include only VolumeId of Amazon EBS volume
 
 aws ec2 describe-instances --filter 'Name=tag:Name,Values=Processor' --query 'Reservations[0].Instances[0].BlockDeviceMappings[0].Ebs.{VolumeId:VolumeId}'
 
@@ -41,6 +41,39 @@ aws ec2 start-instances --instance-ids "i-ea821a40"
 aws ec2 describe-instance-status --instance-id "i-ea821a40"
 
 
+<#
 
+
+==================================================================================================================
+#2.3 Schedule Creation of Subsequent Snapshots
+==================================================================================================================
+
+#2.3.1 Execute the following command
+
+#>
+
+type C:\Users\Administrator\.aws\config
+
+#2.3.3 Create backup.bat
+
+#aws ec2 create-snapshot --volume-id <volume-id> --region <region> >c:\temp\output.txt 2>&1
+aws ec2 create-snapshot --volume-id "vol-cbc9d9dc" --region "eu-west-1" >c:\temp\output.txt 2>&1
+'aws ec2 create-snapshot --volume-id "vol-cbc9d9dc" --region "eu-west-1" >c:\temp\output.txt 2>&1' | out-file C:\temp\backup.bat
+
+#2.3.4 Create batch logon user
+
+net user backupuser passw0rd! /ADD
+
+#2.3.5 Grant backupuser batch logon privileges
+
+c:\temp\ntrights +R SeBatchLogonRight -u backupuser
+
+#2.3.6 Schedule task
+
+schtasks /create /sc MINUTE /mo 1 /tn "Volume Backup Task" /ru backupuser /rp passw0rd! /tr c:\temp\backup.bat
+
+#2.3.7 Verify that snapshots are being created
+
+aws ec2 describe-snapshots --filters "Name=volume-id,Values=<volume-id>"
 
 
