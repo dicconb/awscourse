@@ -58,7 +58,7 @@ type C:\Users\Administrator\.aws\config
 
 #aws ec2 create-snapshot --volume-id <volume-id> --region <region> >c:\temp\output.txt 2>&1
 aws ec2 create-snapshot --volume-id "vol-cbc9d9dc" --region "eu-west-1" >c:\temp\output.txt 2>&1
-'aws ec2 create-snapshot --volume-id "vol-cbc9d9dc" --region "eu-west-1" >c:\temp\output.txt 2>&1' | out-file C:\temp\backup.bat
+'aws ec2 create-snapshot --volume-id "vol-cbc9d9dc" --region "eu-west-1" >c:\temp\output.txt 2>&1' | out-file  -file "C:\temp\backup.bat" -Encoding ascii
 
 #2.3.4 Create batch logon user
 
@@ -74,6 +74,9 @@ schtasks /create /sc MINUTE /mo 1 /tn "Volume Backup Task" /ru backupuser /rp pa
 
 #2.3.7 Verify that snapshots are being created
 
-aws ec2 describe-snapshots --filters "Name=volume-id,Values=<volume-id>"
+#aws ec2 describe-snapshots --filters "Name=volume-id,Values=<volume-id>"
+get-date | out-default;aws ec2 describe-snapshots --filters "Name=volume-id,Values=vol-cbc9d9dc"
+
+
 
 

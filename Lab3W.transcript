@@ -383,3 +383,395 @@ Tuesday, July 7, 2015 12:39:52 PM
         }
     ]
 }
+
+PS C:\Windows\system32> get-date | out-default;aws ec2 describe-snapshots --filters "Name=volume-id,Values=vol-cbc9d9dc"
+
+Tuesday, July 7, 2015 12:41:12 PM
+
+
+{
+    "Snapshots": [
+        {
+            "Description": "",
+            "Encrypted": false,
+            "VolumeId": "vol-cbc9d9dc",
+            "State": "completed",
+            "VolumeSize": 35,
+            "Progress": "100%",
+            "StartTime": "2015-07-07T12:33:53.000Z",
+            "SnapshotId": "snap-2b12337f",
+            "OwnerId": "757392372568"
+        },
+        {
+            "Description": "",
+            "Encrypted": false,
+            "VolumeId": "vol-cbc9d9dc",
+            "State": "completed",
+            "VolumeSize": 35,
+            "Progress": "100%",
+            "StartTime": "2015-07-07T12:29:07.000Z",
+            "SnapshotId": "snap-6e5a3638",
+            "OwnerId": "757392372568"
+        }
+    ]
+}
+
+PS C:\Windows\system32> schtasks /create /sc MINUTE /mo 1 /tn "Volume Backup Task" /ru backupuser /rp passw0rd! /tr c:\temp\backup.bat
+
+PS C:\Windows\system32> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+
+PS C:\Windows\system32> get-date | out-default;aws ec2 describe-snapshots --filters "Name=volume-id,Values=vol-cbc9d9dc"
+
+Tuesday, July 7, 2015 12:44:57 PM
+
+
+{
+    "Snapshots": [
+        {
+            "Description": "",
+            "Encrypted": false,
+            "VolumeId": "vol-cbc9d9dc",
+            "State": "completed",
+            "VolumeSize": 35,
+            "Progress": "100%",
+            "StartTime": "2015-07-07T12:33:53.000Z",
+            "SnapshotId": "snap-2b12337f",
+            "OwnerId": "757392372568"
+        },
+        {
+            "Description": "",
+            "Encrypted": false,
+            "VolumeId": "vol-cbc9d9dc",
+            "State": "completed",
+            "VolumeSize": 35,
+            "Progress": "100%",
+            "StartTime": "2015-07-07T12:29:07.000Z",
+            "SnapshotId": "snap-6e5a3638",
+            "OwnerId": "757392372568"
+        }
+    ]
+}
+
+              CurrentMatchIndex               ReplacementIndex              ReplacementLength CompletionMatches
+              -----------------               ----------------              ----------------- -----------------
+                             -1                              0                              3 {System.Management.Automati...
+
+
+
+              CurrentMatchIndex               ReplacementIndex              ReplacementLength CompletionMatches
+              -----------------               ----------------              ----------------- -----------------
+                             -1                              0                              8 {System.Management.Automati...
+
+
+
+PS C:\Windows\system32> C:\temp\backup.bat
+
+C:\Windows\system32>þa
+C:\temp\backup.bat : 'þa' is not recognized as an internal or external command,
+At line:1 char:1
++ C:\temp\backup.bat
++ ~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ('þa' is not rec...ternal command,:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+operable program or batch file.
+
+
+              CurrentMatchIndex               ReplacementIndex              ReplacementLength CompletionMatches
+              -----------------               ----------------              ----------------- -----------------
+                             -1                              8                              3 {System.Management.Automati...
+
+
+
+              CurrentMatchIndex               ReplacementIndex              ReplacementLength CompletionMatches
+              -----------------               ----------------              ----------------- -----------------
+                             -1                              8                              8 {System.Management.Automati...
+
+
+
+PS C:\Windows\system32> notepad C:\temp\backup.bat
+
+              CurrentMatchIndex               ReplacementIndex              ReplacementLength CompletionMatches
+              -----------------               ----------------              ----------------- -----------------
+                             -1                           2165                              0 {System.Management.Automati...
+
+
+
+              CurrentMatchIndex               ReplacementIndex              ReplacementLength CompletionMatches
+              -----------------               ----------------              ----------------- -----------------
+                             -1                           2168                              0 {System.Management.Automati...
+
+
+
+PS C:\Windows\system32> 'aws ec2 create-snapshot --volume-id "vol-cbc9d9dc" --region "eu-west-1" >c:\temp\output.txt 2>&1' | out-file  -path "C:\temp\backup.bat" -Encoding ascii
+>> TerminatingError(Out-File): "A parameter cannot be found that matches parameter name 'path'."
+Out-File : A parameter cannot be found that matches parameter name 'path'.
+At line:1 char:112
++ ... 1' | out-file  -path "C:\temp\backup.bat" -Encoding ascii
++                    ~~~~~
+    + CategoryInfo          : InvalidArgument: (:) [Out-File], ParameterBindingException
+    + FullyQualifiedErrorId : NamedParameterNotFound,Microsoft.PowerShell.Commands.OutFileCommand
+
+
+PS C:\Windows\system32> 'aws ec2 create-snapshot --volume-id "vol-cbc9d9dc" --region "eu-west-1" >c:\temp\output.txt 2>&1' | out-file  -file "C:\temp\backup.bat" -Encoding ascii
+
+PS C:\Windows\system32> get-date | out-default;aws ec2 describe-snapshots --filters "Name=volume-id,Values=vol-cbc9d9dc"
+
+Tuesday, July 7, 2015 12:46:04 PM
+
+
+{
+    "Snapshots": [
+        {
+            "Description": "",
+            "Encrypted": false,
+            "VolumeId": "vol-cbc9d9dc",
+            "State": "completed",
+            "VolumeSize": 35,
+            "Progress": "100%",
+            "StartTime": "2015-07-07T12:33:53.000Z",
+            "SnapshotId": "snap-2b12337f",
+            "OwnerId": "757392372568"
+        },
+        {
+            "Description": "",
+            "Encrypted": false,
+            "VolumeId": "vol-cbc9d9dc",
+            "State": "completed",
+            "VolumeSize": 35,
+            "Progress": "100%",
+            "StartTime": "2015-07-07T12:29:07.000Z",
+            "SnapshotId": "snap-6e5a3638",
+            "OwnerId": "757392372568"
+        }
+    ]
+}
+
+PS C:\Windows\system32> C:\temp\backup.bat
+
+C:\Windows\system32>aws ec2 create-snapshot --volume-id "vol-cbc9d9dc" --region "eu-west-1"  1>c:\temp\output.txt 2>&1
+
+PS C:\Windows\system32> get-date | out-default;aws ec2 describe-snapshots --filters "Name=volume-id,Values=vol-cbc9d9dc"
+
+Tuesday, July 7, 2015 12:46:22 PM
+
+
+{
+    "Snapshots": [
+        {
+            "Description": "",
+            "Encrypted": false,
+            "VolumeId": "vol-cbc9d9dc",
+            "State": "completed",
+            "VolumeSize": 35,
+            "Progress": "100%",
+            "StartTime": "2015-07-07T12:33:53.000Z",
+            "SnapshotId": "snap-2b12337f",
+            "OwnerId": "757392372568"
+        },
+        {
+            "Description": "",
+            "Encrypted": false,
+            "VolumeId": "vol-cbc9d9dc",
+            "State": "completed",
+            "VolumeSize": 35,
+            "Progress": "100%",
+            "StartTime": "2015-07-07T12:29:07.000Z",
+            "SnapshotId": "snap-6e5a3638",
+            "OwnerId": "757392372568"
+        },
+        {
+            "Description": "",
+            "Encrypted": false,
+            "VolumeId": "vol-cbc9d9dc",
+            "State": "completed",
+            "VolumeSize": 35,
+            "Progress": "100%",
+            "StartTime": "2015-07-07T12:46:13.000Z",
+            "SnapshotId": "snap-c76821e7",
+            "OwnerId": "757392372568"
+        }
+    ]
+}
+
+PS C:\Windows\system32> get-date | out-default;aws ec2 describe-snapshots --filters "Name=volume-id,Values=vol-cbc9d9dc"
+
+Tuesday, July 7, 2015 12:47:06 PM
+
+
+{
+    "Snapshots": [
+        {
+            "Description": "",
+            "Encrypted": false,
+            "VolumeId": "vol-cbc9d9dc",
+            "State": "completed",
+            "VolumeSize": 35,
+            "Progress": "100%",
+            "StartTime": "2015-07-07T12:33:53.000Z",
+            "SnapshotId": "snap-2b12337f",
+            "OwnerId": "757392372568"
+        },
+        {
+            "Description": "",
+            "Encrypted": false,
+            "VolumeId": "vol-cbc9d9dc",
+            "State": "completed",
+            "VolumeSize": 35,
+            "Progress": "100%",
+            "StartTime": "2015-07-07T12:29:07.000Z",
+            "SnapshotId": "snap-6e5a3638",
+            "OwnerId": "757392372568"
+        },
+        {
+            "Description": "",
+            "Encrypted": false,
+            "VolumeId": "vol-cbc9d9dc",
+            "State": "completed",
+            "VolumeSize": 35,
+            "Progress": "100%",
+            "StartTime": "2015-07-07T12:46:13.000Z",
+            "SnapshotId": "snap-c76821e7",
+            "OwnerId": "757392372568"
+        }
+    ]
+}
+
+PS C:\Windows\system32> get-date | out-default;aws ec2 describe-snapshots --filters "Name=volume-id,Values=vol-cbc9d9dc"
+
+Tuesday, July 7, 2015 12:47:26 PM
+
+
+{
+    "Snapshots": [
+        {
+            "Description": "",
+            "Encrypted": false,
+            "VolumeId": "vol-cbc9d9dc",
+            "State": "completed",
+            "VolumeSize": 35,
+            "Progress": "100%",
+            "StartTime": "2015-07-07T12:33:53.000Z",
+            "SnapshotId": "snap-2b12337f",
+            "OwnerId": "757392372568"
+        },
+        {
+            "Description": "",
+            "Encrypted": false,
+            "VolumeId": "vol-cbc9d9dc",
+            "State": "completed",
+            "VolumeSize": 35,
+            "Progress": "100%",
+            "StartTime": "2015-07-07T12:29:07.000Z",
+            "SnapshotId": "snap-6e5a3638",
+            "OwnerId": "757392372568"
+        },
+        {
+            "Description": "",
+            "Encrypted": false,
+            "VolumeId": "vol-cbc9d9dc",
+            "State": "completed",
+            "VolumeSize": 35,
+            "Progress": "100%",
+            "StartTime": "2015-07-07T12:46:13.000Z",
+            "SnapshotId": "snap-c76821e7",
+            "OwnerId": "757392372568"
+        }
+    ]
+}
+
+              CurrentMatchIndex               ReplacementIndex              ReplacementLength CompletionMatches
+              -----------------               ----------------              ----------------- -----------------
+                             -1                           2748                              4 {System.Management.Automati...
+
+
+
+              CurrentMatchIndex               ReplacementIndex              ReplacementLength CompletionMatches
+              -----------------               ----------------              ----------------- -----------------
+                             -1                           2760                              3 {System.Management.Automati...
+
+
+
+              CurrentMatchIndex               ReplacementIndex              ReplacementLength CompletionMatches
+              -----------------               ----------------              ----------------- -----------------
+                             -1                              0                              4 {System.Management.Automati...
+
+
+
+              CurrentMatchIndex               ReplacementIndex              ReplacementLength CompletionMatches
+              -----------------               ----------------              ----------------- -----------------
+                             -1                             12                              3 {System.Management.Automati...
+
+
+
+              CurrentMatchIndex               ReplacementIndex              ReplacementLength CompletionMatches
+              -----------------               ----------------              ----------------- -----------------
+                             -1                             12                              8 {System.Management.Automati...
+
+
+
+PS C:\Windows\system32> get-content C:\temp\output.txt
+{
+    "Description": "",
+    "Encrypted": false,
+    "VolumeId": "vol-cbc9d9dc",
+    "State": "pending",
+    "VolumeSize": 35,
+    "Progress": "",
+    "StartTime": "2015-07-07T12:46:13.000Z",
+    "SnapshotId": "snap-c76821e7",
+    "OwnerId": "757392372568"
+}
+
+PS C:\Windows\system32> get-date | out-default;aws ec2 describe-snapshots --filters "Name=volume-id,Values=vol-cbc9d9dc"
+
+Tuesday, July 7, 2015 12:48:31 PM
+
+
+{
+    "Snapshots": [
+        {
+            "Description": "",
+            "Encrypted": false,
+            "VolumeId": "vol-cbc9d9dc",
+            "State": "completed",
+            "VolumeSize": 35,
+            "Progress": "100%",
+            "StartTime": "2015-07-07T12:33:53.000Z",
+            "SnapshotId": "snap-2b12337f",
+            "OwnerId": "757392372568"
+        },
+        {
+            "Description": "",
+            "Encrypted": false,
+            "VolumeId": "vol-cbc9d9dc",
+            "State": "completed",
+            "VolumeSize": 35,
+            "Progress": "100%",
+            "StartTime": "2015-07-07T12:29:07.000Z",
+            "SnapshotId": "snap-6e5a3638",
+            "OwnerId": "757392372568"
+        },
+        {
+            "Description": "",
+            "Encrypted": false,
+            "VolumeId": "vol-cbc9d9dc",
+            "State": "completed",
+            "VolumeSize": 35,
+            "Progress": "100%",
+            "StartTime": "2015-07-07T12:46:13.000Z",
+            "SnapshotId": "snap-c76821e7",
+            "OwnerId": "757392372568"
+        }
+    ]
+}
+
+              CurrentMatchIndex               ReplacementIndex              ReplacementLength CompletionMatches
+              -----------------               ----------------              ----------------- -----------------
+                             -1                           2748                             17 {}
+
+
+
+PS C:\Windows\system32> "not working :(. seems to be a scheduled task problem"
+not working :(. seems to be a scheduled task problem
