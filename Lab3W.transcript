@@ -1,0 +1,166 @@
+**********************
+Windows PowerShell transcript start
+Start time: 20150707122637
+Username: WIN-FFRLCUINKFO\Administrator
+RunAs User: WIN-FFRLCUINKFO\Administrator
+Machine: WIN-FFRLCUINKFO (Microsoft Windows NT 6.2.9200.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell_ise.exe
+Process ID: 1492
+**********************
+Transcript started, output file is C:\Users\Administrator\Documents\giterpos\awscourse\Lab3W.transcript
+
+PS C:\Windows\system32> aws ec2 describe-instances --filter 'Name=tag:Name,Values=Processor'
+{
+    "Reservations": [
+        {
+            "OwnerId": "757392372568",
+            "ReservationId": "r-cc430c28",
+            "Groups": [],
+            "Instances": [
+                {
+                    "Monitoring": {
+                        "State": "disabled"
+                    },
+                    "PublicDnsName": "ec2-52-18-93-252.eu-west-1.compute.amazonaws.com",
+                    "Platform": "windows",
+                    "State": {
+                        "Code": 16,
+                        "Name": "running"
+                    },
+                    "EbsOptimized": false,
+                    "LaunchTime": "2015-07-07T12:13:19.000Z",
+                    "PublicIpAddress": "52.18.93.252",
+                    "PrivateIpAddress": "10.5.0.253",
+                    "ProductCodes": [],
+                    "VpcId": "vpc-ec9b1889",
+                    "StateTransitionReason": "",
+                    "InstanceId": "i-ea821a40",
+                    "ImageId": "ami-c1740ab6",
+                    "PrivateDnsName": "ip-10-5-0-253.eu-west-1.compute.internal",
+                    "KeyName": "qwikLABS-L474-10607",
+                    "SecurityGroups": [
+                        {
+                            "GroupName": "RDP Access",
+                            "GroupId": "sg-e5fffd80"
+                        }
+                    ],
+                    "ClientToken": "ocwRH1436271199396",
+                    "SubnetId": "subnet-fba9d59e",
+                    "InstanceType": "t2.medium",
+                    "NetworkInterfaces": [
+                        {
+                            "Status": "in-use",
+                            "MacAddress": "02:73:b6:a3:d6:09",
+                            "SourceDestCheck": true,
+                            "VpcId": "vpc-ec9b1889",
+                            "Description": "Primary network interface",
+                            "Association": {
+                                "PublicIp": "52.18.93.252",
+                                "PublicDnsName": "ec2-52-18-93-252.eu-west-1.compute.amazonaws.com",
+                                "IpOwnerId": "amazon"
+                            },
+                            "NetworkInterfaceId": "eni-b237d6d5",
+                            "PrivateIpAddresses": [
+                                {
+                                    "PrivateDnsName": "ip-10-5-0-253.eu-west-1.compute.internal",
+                                    "Association": {
+                                        "PublicIp": "52.18.93.252",
+                                        "PublicDnsName": "ec2-52-18-93-252.eu-west-1.compute.amazonaws.com",
+                                        "IpOwnerId": "amazon"
+                                    },
+                                    "Primary": true,
+                                    "PrivateIpAddress": "10.5.0.253"
+                                }
+                            ],
+                            "PrivateDnsName": "ip-10-5-0-253.eu-west-1.compute.internal",
+                            "Attachment": {
+                                "Status": "attached",
+                                "DeviceIndex": 0,
+                                "DeleteOnTermination": true,
+                                "AttachmentId": "eni-attach-0e16354d",
+                                "AttachTime": "2015-07-07T12:13:19.000Z"
+                            },
+                            "Groups": [
+                                {
+                                    "GroupName": "RDP Access",
+                                    "GroupId": "sg-e5fffd80"
+                                }
+                            ],
+                            "SubnetId": "subnet-fba9d59e",
+                            "OwnerId": "757392372568",
+                            "PrivateIpAddress": "10.5.0.253"
+                        }
+                    ],
+                    "SourceDestCheck": true,
+                    "Placement": {
+                        "Tenancy": "default",
+                        "GroupName": "",
+                        "AvailabilityZone": "eu-west-1a"
+                    },
+                    "Hypervisor": "xen",
+                    "BlockDeviceMappings": [
+                        {
+                            "DeviceName": "/dev/sda1",
+                            "Ebs": {
+                                "Status": "attached",
+                                "DeleteOnTermination": true,
+                                "VolumeId": "vol-cbc9d9dc",
+                                "AttachTime": "2015-07-07T12:13:23.000Z"
+                            }
+                        }
+                    ],
+                    "Architecture": "x86_64",
+                    "RootDeviceType": "ebs",
+                    "IamInstanceProfile": {
+                        "Id": "AIPAJ7HTI4DABFET35OMG",
+                        "Arn": "arn:aws:iam::757392372568:instance-profile/S3BucketAccess"
+                    },
+                    "RootDeviceName": "/dev/sda1",
+                    "VirtualizationType": "hvm",
+                    "Tags": [
+                        {
+                            "Value": "Processor",
+                            "Key": "Name"
+                        }
+                    ],
+                    "AmiLaunchIndex": 0
+                }
+            ]
+        }
+    ]
+}
+
+PS C:\Windows\system32> aws ec2 describe-instances --filter 'Name=tag:Name,Values=Processor' --query 'Reservations[0].Instances[0].BlockDeviceMappings[0].Ebs.{VolumeId:VolumeId}'
+{
+    "VolumeId": "vol-cbc9d9dc"
+}
+
+PS C:\Windows\system32> aws ec2 describe-instances --filters 'Name=tag:Name,Values=Processor' --query 'Reservations[0].Instances[0].InstanceId'
+"i-ea821a40"
+
+PS C:\Windows\system32> aws ec2 stop-instances --instance-ids "i-ea821a40"
+{
+    "StoppingInstances": [
+        {
+            "InstanceId": "i-ea821a40",
+            "CurrentState": {
+                "Code": 64,
+                "Name": "stopping"
+            },
+            "PreviousState": {
+                "Code": 16,
+                "Name": "running"
+            }
+        }
+    ]
+}
+
+PS C:\Windows\system32> aws ec2 describe-instance-status --instance-id "i-ea821a40"
+{
+    "InstanceStatuses": []
+}
+
+PS C:\Windows\system32> aws ec2 describe-instance-status --instance-id "i-ea821a40"
+{
+    "InstanceStatuses": []
+}
