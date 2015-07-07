@@ -1065,3 +1065,323 @@ PS C:\Users\Administrator\Documents\gitrepos\awscourse> TerminatingError(): "The
 
 PS C:\Users\Administrator\Documents\gitrepos\awscourse> "aws configure apparently doesn't work in the ISE"
 aws configure apparently doesn't work in the ISE
+
+PS C:\Users\Administrator\Documents\gitrepos\awscourse> (New-Object System.Net.WebClient).DownloadFile("https://d2lrzjb0vjvpn5.cloudfront.net/sys-ops/v2.2/lab-3-storage-windows/static/loggen.ps1", "c:\temp\loggen.ps1")
+
+PS C:\Users\Administrator\Documents\gitrepos\awscourse> c:\temp\loggen.ps1
+
+PS C:\Users\Administrator\Documents\gitrepos\awscourse> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+
+              CurrentMatchIndex               ReplacementIndex              ReplacementLength CompletionMatches
+              -----------------               ----------------              ----------------- -----------------
+                             -1                              0                              4 {System.Management.Automati...
+
+
+
+              CurrentMatchIndex               ReplacementIndex              ReplacementLength CompletionMatches
+              -----------------               ----------------              ----------------- -----------------
+                             -1                              0                              9 {System.Management.Automati...
+
+
+
+              CurrentMatchIndex               ReplacementIndex              ReplacementLength CompletionMatches
+              -----------------               ----------------              ----------------- -----------------
+                             -1                             12                              3 {System.Management.Automati...
+
+
+
+              CurrentMatchIndex               ReplacementIndex              ReplacementLength CompletionMatches
+              -----------------               ----------------              ----------------- -----------------
+                             -1                             12                              8 {System.Management.Automati...
+
+
+
+PS C:\Users\Administrator\Documents\gitrepos\awscourse> Get-Content C:\temp\timestamp.log
+2015-07-07T13:13:27
+2015-07-07T13:13:28
+2015-07-07T13:13:29
+2015-07-07T13:13:30
+2015-07-07T13:13:31
+2015-07-07T13:13:32
+2015-07-07T13:13:33
+2015-07-07T13:13:34
+2015-07-07T13:13:35
+2015-07-07T13:13:36
+2015-07-07T13:13:37
+2015-07-07T13:13:38
+2015-07-07T13:13:39
+2015-07-07T13:13:40
+2015-07-07T13:13:41
+2015-07-07T13:13:42
+2015-07-07T13:13:43
+2015-07-07T13:13:44
+2015-07-07T13:13:45
+2015-07-07T13:13:46
+2015-07-07T13:13:47
+2015-07-07T13:13:48
+2015-07-07T13:13:49
+2015-07-07T13:13:50
+2015-07-07T13:13:51
+2015-07-07T13:13:52
+2015-07-07T13:13:53
+2015-07-07T13:13:54
+2015-07-07T13:13:55
+2015-07-07T13:13:56
+2015-07-07T13:13:57
+2015-07-07T13:13:58
+2015-07-07T13:13:59
+2015-07-07T13:14:00
+2015-07-07T13:14:01
+2015-07-07T13:14:02
+2015-07-07T13:14:03
+2015-07-07T13:14:04
+2015-07-07T13:14:05
+2015-07-07T13:14:06
+2015-07-07T13:14:07
+2015-07-07T13:14:08
+2015-07-07T13:14:09
+2015-07-07T13:14:10
+2015-07-07T13:14:11
+2015-07-07T13:14:12
+2015-07-07T13:14:13
+2015-07-07T13:14:14
+2015-07-07T13:14:15
+2015-07-07T13:14:16
+2015-07-07T13:14:17
+2015-07-07T13:14:18
+2015-07-07T13:14:19
+2015-07-07T13:14:20
+2015-07-07T13:14:21
+2015-07-07T13:14:22
+2015-07-07T13:14:23
+2015-07-07T13:14:24
+2015-07-07T13:14:25
+2015-07-07T13:14:26
+2015-07-07T13:14:27
+2015-07-07T13:14:28
+2015-07-07T13:14:29
+2015-07-07T13:14:30
+2015-07-07T13:14:31
+2015-07-07T13:14:32
+2015-07-07T13:14:33
+2015-07-07T13:14:34
+2015-07-07T13:14:35
+2015-07-07T13:14:36
+2015-07-07T13:14:37
+2015-07-07T13:14:38
+2015-07-07T13:14:39
+2015-07-07T13:14:40
+2015-07-07T13:14:41
+2015-07-07T13:14:42
+2015-07-07T13:14:44
+2015-07-07T13:14:45
+2015-07-07T13:14:46
+2015-07-07T13:14:47
+2015-07-07T13:14:48
+2015-07-07T13:14:49
+2015-07-07T13:14:50
+2015-07-07T13:14:51
+2015-07-07T13:14:52
+2015-07-07T13:14:53
+2015-07-07T13:14:54
+2015-07-07T13:14:55
+2015-07-07T13:14:56
+2015-07-07T13:14:57
+2015-07-07T13:14:58
+
+              CurrentMatchIndex               ReplacementIndex              ReplacementLength CompletionMatches
+              -----------------               ----------------              ----------------- -----------------
+                             -1                           4353                             25 {}
+
+
+
+PS C:\Users\Administrator\Documents\gitrepos\awscourse> invoke-command {c:\temp\loggen.ps1} -AsJob
+>> TerminatingError(Invoke-Command): "Parameter set cannot be resolved using the specified named parameters."
+Invoke-Command : Parameter set cannot be resolved using the specified named parameters.
+At line:1 char:1
++ invoke-command {c:\temp\loggen.ps1} -AsJob
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidArgument: (:) [Invoke-Command], ParameterBindingException
+    + FullyQualifiedErrorId : AmbiguousParameterSet,Microsoft.PowerShell.Commands.InvokeCommandCommand
+
+
+              CurrentMatchIndex               ReplacementIndex              ReplacementLength CompletionMatches
+              -----------------               ----------------              ----------------- -----------------
+                             -1                           4382                              0 {System.Management.Automati...
+
+
+
+              CurrentMatchIndex               ReplacementIndex              ReplacementLength CompletionMatches
+              -----------------               ----------------              ----------------- -----------------
+                             -1                           4382                              1 {System.Management.Automati...
+
+
+
+PS C:\Users\Administrator\Documents\gitrepos\awscourse> invoke-command -computername . {c:\temp\loggen.ps1} -AsJob
+
+Id     Name            PSJobTypeName   State         HasMoreData     Location             Command
+--     ----            -------------   -----         -----------     --------             -------
+2      Job2            RemoteJob       Running       True            localhost            c:\temp\loggen.ps1
+
+
+
+              CurrentMatchIndex               ReplacementIndex              ReplacementLength CompletionMatches
+              -----------------               ----------------              ----------------- -----------------
+                             -1                              0                              4 {System.Management.Automati...
+
+
+
+              CurrentMatchIndex               ReplacementIndex              ReplacementLength CompletionMatches
+              -----------------               ----------------              ----------------- -----------------
+                             -1                             12                              3 {System.Management.Automati...
+
+
+
+              CurrentMatchIndex               ReplacementIndex              ReplacementLength CompletionMatches
+              -----------------               ----------------              ----------------- -----------------
+                             -1                             12                              8 {System.Management.Automati...
+
+
+
+              CurrentMatchIndex               ReplacementIndex              ReplacementLength CompletionMatches
+              -----------------               ----------------              ----------------- -----------------
+                             -1                             49                              0 {System.Management.Automati...
+
+
+
+PS C:\Users\Administrator\Documents\gitrepos\awscourse> get-content C:\temp\timestamp.log | select -last 5
+2015-07-07T13:16:52
+2015-07-07T13:16:53
+2015-07-07T13:16:54
+2015-07-07T13:16:55
+2015-07-07T13:16:56
+
+PS C:\Users\Administrator\Documents\gitrepos\awscourse> get-content C:\temp\timestamp.log | select -last 5
+2015-07-07T13:16:55
+2015-07-07T13:16:56
+2015-07-07T13:16:57
+2015-07-07T13:16:58
+2015-07-07T13:16:59
+
+PS C:\Users\Administrator\Documents\gitrepos\awscourse> cd \temp
+
+PS C:\temp> aws s3 mv timestamp.log "s3://dicconlab3w/logfiles/timestamp-$(Get-Date -Format 'M-d-yyyy-h:m:s')"
+move: .\timestamp.log to s3://dicconlab3w/logfiles/timestamp-7-7-2015-1:18:11
+
+PS C:\temp> get-content C:\temp\timestamp.log | select -last 5
+2015-07-07T13:18:18
+2015-07-07T13:18:19
+2015-07-07T13:18:20
+2015-07-07T13:18:22
+2015-07-07T13:18:23
+
+PS C:\temp> get-content C:\temp\timestamp.log
+2015-07-07T13:18:12
+2015-07-07T13:18:13
+2015-07-07T13:18:14
+2015-07-07T13:18:15
+2015-07-07T13:18:16
+2015-07-07T13:18:17
+2015-07-07T13:18:18
+2015-07-07T13:18:19
+2015-07-07T13:18:20
+2015-07-07T13:18:22
+2015-07-07T13:18:23
+2015-07-07T13:18:24
+2015-07-07T13:18:25
+2015-07-07T13:18:26
+2015-07-07T13:18:27
+2015-07-07T13:18:28
+2015-07-07T13:18:29
+2015-07-07T13:18:30
+
+PS C:\temp> aws s3 mv timestamp.log "s3://dicconlab3w/logfiles/timestamp-$(Get-Date -Format 'M-d-yyyy-h:m:s')"
+move: .\timestamp.log to s3://dicconlab3w/logfiles/timestamp-7-7-2015-1:18:39
+
+PS C:\temp> get-content C:\temp\timestamp.log
+2015-07-07T13:18:41
+2015-07-07T13:18:42
+2015-07-07T13:18:43
+
+PS C:\temp> aws s3 ls s3://dicconlab3w
+                           PRE logfiles/
+
+PS C:\temp> aws s3 ls s3://dicconlab3w/logfiles/
+2015-07-07 13:18:13       3738 timestamp-7-7-2015-1:18:11
+2015-07-07 13:18:41        567 timestamp-7-7-2015-1:18:39
+
+PS C:\temp> aws s3 mv s3://dicconlab3w/logfiles/timestamp-7-7-2015-1:18:11 s3://dicconlab3w/logfiles/archive/timestamp-7-7-2015-1:18:11
+move: s3://dicconlab3w/logfiles/timestamp-7-7-2015-1:18:11 to s3://dicconlab3w/logfiles/archive/timestamp-7-7-2015-1:18:11
+
+PS C:\temp> aws s3 ls s3://dicconlab3w/logfiles/
+                           PRE archive/
+2015-07-07 13:18:41        567 timestamp-7-7-2015-1:18:39
+
+              CurrentMatchIndex               ReplacementIndex              ReplacementLength CompletionMatches
+              -----------------               ----------------              ----------------- -----------------
+                             -1                           5163                             34 {}
+
+
+
+PS C:\temp> aws s3 ls s3://dicconlab3w/logfiles/archive/
+2015-07-07 13:19:49       3738 timestamp-7-7-2015-1:18:11
+
+              CurrentMatchIndex               ReplacementIndex              ReplacementLength CompletionMatches
+              -----------------               ----------------              ----------------- -----------------
+                             -1                           5201                              4 {System.Management.Automati...
+
+
+
+              CurrentMatchIndex               ReplacementIndex              ReplacementLength CompletionMatches
+              -----------------               ----------------              ----------------- -----------------
+                             -1                           5213                              4 {System.Management.Automati...
+
+
+
+              CurrentMatchIndex               ReplacementIndex              ReplacementLength CompletionMatches
+              -----------------               ----------------              ----------------- -----------------
+                             -1                           5213                              2 {System.Management.Automati...
+
+
+
+              CurrentMatchIndex               ReplacementIndex              ReplacementLength CompletionMatches
+              -----------------               ----------------              ----------------- -----------------
+                             -1                           5213                              4 {System.Management.Automati...
+
+
+
+              CurrentMatchIndex               ReplacementIndex              ReplacementLength CompletionMatches
+              -----------------               ----------------              ----------------- -----------------
+                             -1                           5213                              6 {System.Management.Automati...
+
+
+
+PS C:\temp> get-job * | Stop-Job
+
+PS C:\temp> get-content C:\temp\timestamp.log | select -last 5
+2015-07-07T13:20:36
+2015-07-07T13:20:37
+2015-07-07T13:20:38
+2015-07-07T13:20:39
+2015-07-07T13:20:40
+
+PS C:\temp> get-content C:\temp\timestamp.log | select -last 5
+2015-07-07T13:20:36
+2015-07-07T13:20:37
+2015-07-07T13:20:38
+2015-07-07T13:20:39
+2015-07-07T13:20:40
+
+PS C:\temp> aws s3 mv timestamp.log "s3://dicconlab3w/logfiles/timestamp-$(Get-Date -Format 'M-d-yyyy-h:m:s')"
+move: .\timestamp.log to s3://dicconlab3w/logfiles/timestamp-7-7-2015-1:20:56
+
+PS C:\temp> get-content C:\temp\timestamp.log | select -last 5
+get-content : Cannot find path 'C:\temp\timestamp.log' because it does not exist.
+At line:1 char:1
++ get-content C:\temp\timestamp.log | select -last 5
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (C:\temp\timestamp.log:String) [Get-Content], ItemNotFoundException
+    + FullyQualifiedErrorId : PathNotFound,Microsoft.PowerShell.Commands.GetContentCommand
+

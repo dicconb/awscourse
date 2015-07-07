@@ -117,7 +117,9 @@ aws configure
 
 #3.2.4 Run loggen.ps1
 
-c:\temp\loggen.ps1
+#c:\temp\loggen.ps1
+invoke-command -computername . {c:\temp\loggen.ps1} -AsJob
+
 
 #3.2.7 Change directories
 
@@ -125,26 +127,27 @@ cd \temp
 
 #3.2.8 Move file into Amazon S3
 
-aws s3 mv timestamp.log "s3://<s3-bucket-name>/logfiles/timestamp-$(Get-Date -Format 'M-d-yyyy-h:m:s')"
+aws s3 mv timestamp.log "s3://dicconlab3w/logfiles/timestamp-$(Get-Date -Format 'M-d-yyyy-h:m:s')"
 
 #3.2.9 Move file again
 
-aws s3 mv timestamp.log "s3://<s3-bucket-name>/logfiles/timestamp-$(Get-Date -Format 'M-d-yyyy-h:m:s')"
+aws s3 mv timestamp.log "s3://dicconlab3w/logfiles/timestamp-$(Get-Date -Format 'M-d-yyyy-h:m:s')"
 
 #3.2.10 List the contents of your Amazon S3 bucket
 
-aws s3 ls s3://<s3-bucket-name>
+aws s3 ls s3://dicconlab3w
 
 #3.2.11 List all objects containing the /logfiles/ prefix
 
-aws s3 ls s3://<s3-bucket-name>/logfiles/
+aws s3 ls s3://dicconlab3w/logfiles/
 
 #3.2.12 Move oldest file to /logfiles/archive/ prefix
 
-aws s3 mv s3://<s3-bucket-name>/logfiles/<file-name> s3://<s3-bucket-name>/logfiles/archive/<file-name>
+aws s3 mv s3://dicconlab3w/logfiles/timestamp-7-7-2015-1:18:11 s3://dicconlab3w/logfiles/archive/timestamp-7-7-2015-1:18:11
 
 #3.2.13 Verify move
 
-aws s3 ls s3://<s3-bucket-name>/logfiles/
+aws s3 ls s3://dicconlab3w/logfiles/
+aws s3 ls s3://dicconlab3w/logfiles/archive/
 
-
+get-job * | Stop-Job
