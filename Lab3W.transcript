@@ -990,3 +990,78 @@ PS C:\Windows\system32> stop-transcript
 Windows PowerShell transcript end
 End time: 20150707130452
 **********************
+**********************
+Windows PowerShell transcript start
+Start time: 20150707130855
+Username: WIN-KL3OLM8Q2K3\Administrator
+RunAs User: WIN-KL3OLM8Q2K3\Administrator
+Machine: WIN-KL3OLM8Q2K3 (Microsoft Windows NT 6.2.9200.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell_ise.exe C:\Users\Administrator\Documents\gitrepos\awscourse\Lab3W.ps1
+Process ID: 3416
+**********************
+Transcript started, output file is .\Lab3W.transcript
+
+PS C:\Users\Administrator\Documents\gitrepos\awscourse> "new instance (Processor)"
+new instance (Processor)
+
+PS C:\Users\Administrator\Documents\gitrepos\awscourse> aws configure
+
+PS C:\Users\Administrator\Documents\gitrepos\awscourse> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+
+              CurrentMatchIndex               ReplacementIndex              ReplacementLength CompletionMatches
+              -----------------               ----------------              ----------------- -----------------
+                             -1                              4                              6 {}
+
+
+
+PS C:\Users\Administrator\Documents\gitrepos\awscourse> aws config
+aws : usage: aws [options] <command> <subcommand> [parameters]
+At line:1 char:1
++ aws config
++ ~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (usage: aws [opt...d> [parameters]:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+aws.exe: error: argument command: Invalid choice, valid choices are:
+
+autoscaling                              | cloudformation
+cloudfront                               | cloudhsm
+cloudsearch                              | cloudsearchdomain
+cloudtrail                               | cloudwatch
+cognito-identity                         | cognito-sync
+datapipeline                             | directconnect
+ds                                       | dynamodb
+ec2                                      | ecs
+efs                                      | elasticache
+elasticbeanstalk                         | elastictranscoder
+elb                                      | emr
+glacier                                  | iam
+importexport                             | kinesis
+kms                                      | lambda
+logs                                     | machinelearning
+opsworks                                 | rds
+redshift                                 | route53
+route53domains                           | sdb
+ses                                      | sns
+sqs                                      | ssm
+storagegateway                           | sts
+support                                  | swf
+workspaces                               | s3api
+s3                                       | configure
+deploy                                   | configservice
+help
+
+
+Invalid choice: 'config', maybe you meant:
+
+  * configure
+
+
+PS C:\Users\Administrator\Documents\gitrepos\awscourse> aws configure
+
+PS C:\Users\Administrator\Documents\gitrepos\awscourse> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+
+PS C:\Users\Administrator\Documents\gitrepos\awscourse> "aws configure apparently doesn't work in the ISE"
+aws configure apparently doesn't work in the ISE
