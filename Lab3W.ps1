@@ -88,13 +88,16 @@ schtasks /Delete /tn "Volume Backup Task"
 
 #2.4.3 Verify the current number of snapshots for the volume
 
-aws ec2 describe-snapshots --filters "Name=volume-id,Values=<volume-id>" --query 'Snapshots[*].SnapshotId'
+#aws ec2 describe-snapshots --filters "Name=volume-id,Values=<volume-id>" --query 'Snapshots[*].SnapshotId'
+aws ec2 describe-snapshots --filters "Name=volume-id,Values=vol-cbc9d9dc" --query 'Snapshots[*].SnapshotId'
 
 #2.4.4 Execute snapshotter.ps1
 
-c:\temp\snapshotter.ps1 <region>
+#c:\temp\snapshotter.ps1 <region>
+c:\temp\snapshotter.ps1 "eu-west-1"
 
 #2.4.5 Re-examine the current number of snapshots for the volume
 
-aws ec2 describe-snapshots --filters "Name=volume-id,Values=<volume-id>" --query 'Snapshots[*].SnapshotId'
+#aws ec2 describe-snapshots --filters "Name=volume-id,Values=<volume-id>" --query 'Snapshots[*].SnapshotId'
+aws ec2 describe-snapshots --filters "Name=volume-id,Values=vol-cbc9d9dc" --query 'Snapshots[*].SnapshotId'
 

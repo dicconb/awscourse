@@ -978,3 +978,15 @@ PS C:\Windows\system32> TerminatingError(): "The pipeline has been stopped."
 
 PS C:\Windows\system32> "deleted manually again"
 deleted manually again
+
+              CurrentMatchIndex               ReplacementIndex              ReplacementLength CompletionMatches
+              -----------------               ----------------              ----------------- -----------------
+                             -1                              0                              5 {System.Management.Automati...
+
+
+
+PS C:\Windows\system32> stop-transcript
+**********************
+Windows PowerShell transcript end
+End time: 20150707130452
+**********************
