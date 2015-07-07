@@ -775,3 +775,206 @@ Tuesday, July 7, 2015 12:48:31 PM
 
 PS C:\Windows\system32> "not working :(. seems to be a scheduled task problem"
 not working :(. seems to be a scheduled task problem
+
+PS C:\Windows\system32> schtasks /Delete /tn "Volume Backup Task"
+
+PS C:\Windows\system32> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+
+              CurrentMatchIndex               ReplacementIndex              ReplacementLength CompletionMatches
+              -----------------               ----------------              ----------------- -----------------
+                             -1                              0                              5 {System.Management.Automati...
+
+
+
+PS C:\Windows\system32> Stop-Transcript
+**********************
+Windows PowerShell transcript end
+End time: 20150707125058
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20150707125135
+Username: WIN-FFRLCUINKFO\Administrator
+RunAs User: WIN-FFRLCUINKFO\Administrator
+Machine: WIN-FFRLCUINKFO (Microsoft Windows NT 6.2.9200.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell_ise.exe
+Process ID: 2616
+**********************
+Transcript started, output file is C:\Users\Administrator\Documents\giterpos\awscourse\Lab3W.transcript
+
+PS C:\Windows\system32> schtasks /Delete /tn "Volume Backup Task"
+
+PS C:\Windows\system32> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+
+PS C:\Windows\system32> "doesn't work, deleting manually"
+doesn't work, deleting manually
+
+PS C:\Windows\system32> "deleted successfully"
+deleted successfully
+
+PS C:\Windows\system32> aws ec2 describe-snapshots --filters "Name=volume-id,Values=vol-cbc9d9dc" --query 'Snapshots[*].SnapshotId'
+[
+    "snap-2b12337f",
+    "snap-6e5a3638",
+    "snap-c76821e7"
+]
+
+PS C:\Windows\system32> c:\temp\snapshotter.ps1 "eu-west-1"
+
+PS C:\Windows\system32> aws ec2 describe-snapshots --filters "Name=volume-id,Values=vol-cbc9d9dc" --query 'Snapshots[*].SnapshotId'
+[
+    "snap-7409c520",
+    "snap-c76821e7"
+]
+
+PS C:\Windows\system32> get-date | out-default;aws ec2 describe-snapshots --filters "Name=volume-id,Values=vol-cbc9d9dc"
+
+Tuesday, July 7, 2015 12:55:03 PM
+
+
+{
+    "Snapshots": [
+        {
+            "Description": "Automated backup made by snapshotter.ps1",
+            "Encrypted": false,
+            "VolumeId": "vol-cbc9d9dc",
+            "State": "completed",
+            "VolumeSize": 35,
+            "Progress": "100%",
+            "StartTime": "2015-07-07T12:53:57.000Z",
+            "SnapshotId": "snap-7409c520",
+            "OwnerId": "757392372568"
+        },
+        {
+            "Description": "",
+            "Encrypted": false,
+            "VolumeId": "vol-cbc9d9dc",
+            "State": "completed",
+            "VolumeSize": 35,
+            "Progress": "100%",
+            "StartTime": "2015-07-07T12:46:13.000Z",
+            "SnapshotId": "snap-c76821e7",
+            "OwnerId": "757392372568"
+        }
+    ]
+}
+
+PS C:\Windows\system32> "I think the scheduled task wasn't working because the original task hung"
+I think the scheduled task wasn't working because the original task hung
+
+PS C:\Windows\system32> schtasks /create /sc MINUTE /mo 1 /tn "Volume Backup Task" /ru backupuser /rp passw0rd! /tr c:\temp\backup.bat
+SUCCESS: The scheduled task "Volume Backup Task" has successfully been created.
+
+PS C:\Windows\system32> get-date | out-default;aws ec2 describe-snapshots --filters "Name=volume-id,Values=vol-cbc9d9dc"
+
+Tuesday, July 7, 2015 12:56:17 PM
+
+
+{
+    "Snapshots": [
+        {
+            "Description": "Automated backup made by snapshotter.ps1",
+            "Encrypted": false,
+            "VolumeId": "vol-cbc9d9dc",
+            "State": "completed",
+            "VolumeSize": 35,
+            "Progress": "100%",
+            "StartTime": "2015-07-07T12:53:57.000Z",
+            "SnapshotId": "snap-7409c520",
+            "OwnerId": "757392372568"
+        },
+        {
+            "Description": "",
+            "Encrypted": false,
+            "VolumeId": "vol-cbc9d9dc",
+            "State": "completed",
+            "VolumeSize": 35,
+            "Progress": "100%",
+            "StartTime": "2015-07-07T12:46:13.000Z",
+            "SnapshotId": "snap-c76821e7",
+            "OwnerId": "757392372568"
+        }
+    ]
+}
+
+PS C:\Windows\system32> get-date | out-default;aws ec2 describe-snapshots --filters "Name=volume-id,Values=vol-cbc9d9dc"
+
+Tuesday, July 7, 2015 12:56:26 PM
+
+
+{
+    "Snapshots": [
+        {
+            "Description": "Automated backup made by snapshotter.ps1",
+            "Encrypted": false,
+            "VolumeId": "vol-cbc9d9dc",
+            "State": "completed",
+            "VolumeSize": 35,
+            "Progress": "100%",
+            "StartTime": "2015-07-07T12:53:57.000Z",
+            "SnapshotId": "snap-7409c520",
+            "OwnerId": "757392372568"
+        },
+        {
+            "Description": "",
+            "Encrypted": false,
+            "VolumeId": "vol-cbc9d9dc",
+            "State": "completed",
+            "VolumeSize": 35,
+            "Progress": "100%",
+            "StartTime": "2015-07-07T12:46:13.000Z",
+            "SnapshotId": "snap-c76821e7",
+            "OwnerId": "757392372568"
+        }
+    ]
+}
+
+PS C:\Windows\system32> get-date | out-default;aws ec2 describe-snapshots --filters "Name=volume-id,Values=vol-cbc9d9dc"
+
+Tuesday, July 7, 2015 12:57:27 PM
+
+
+{
+    "Snapshots": [
+        {
+            "Description": "Automated backup made by snapshotter.ps1",
+            "Encrypted": false,
+            "VolumeId": "vol-cbc9d9dc",
+            "State": "completed",
+            "VolumeSize": 35,
+            "Progress": "100%",
+            "StartTime": "2015-07-07T12:53:57.000Z",
+            "SnapshotId": "snap-7409c520",
+            "OwnerId": "757392372568"
+        },
+        {
+            "Description": "",
+            "Encrypted": false,
+            "VolumeId": "vol-cbc9d9dc",
+            "State": "completed",
+            "VolumeSize": 35,
+            "Progress": "100%",
+            "StartTime": "2015-07-07T12:46:13.000Z",
+            "SnapshotId": "snap-c76821e7",
+            "OwnerId": "757392372568"
+        }
+    ]
+}
+
+PS C:\Windows\system32> "never mind"
+never mind
+
+PS C:\Windows\system32> schtasks /Delete /tn "Volume Backup Task"
+
+PS C:\Windows\system32> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+
+PS C:\Windows\system32> schtasks /Delete /tn "Volume Backup Task"
+
+PS C:\Windows\system32> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+
+PS C:\Windows\system32> "deleted manually again"
+deleted manually again

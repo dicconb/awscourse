@@ -6,7 +6,7 @@ aws ec2 describe-instances --filter 'Name=tag:Name,Values=Processor'
 
 aws ec2 describe-instances --filter 'Name=tag:Name,Values=Processor' --query 'Reservations[0].Instances[0].BlockDeviceMappings[0].Ebs.{VolumeId:VolumeId}'
 
-#2.2.4 Obtain instance ID of Processor instance
+#2.#2.4 Obtain instance ID of Processor instance
 
 aws ec2 describe-instances --filters 'Name=tag:Name,Values=Processor' --query 'Reservations[0].Instances[0].InstanceId'
 
@@ -77,6 +77,24 @@ schtasks /create /sc MINUTE /mo 1 /tn "Volume Backup Task" /ru backupuser /rp pa
 #aws ec2 describe-snapshots --filters "Name=volume-id,Values=<volume-id>"
 get-date | out-default;aws ec2 describe-snapshots --filters "Name=volume-id,Values=vol-cbc9d9dc"
 
+<#
+==================================================================================================================
+#2.4 Retain Only Last Two Snapshots
+==================================================================================================================
 
+#2.4.1 Remove scheduled tasks
+#>
+schtasks /Delete /tn "Volume Backup Task"
 
+#2.4.3 Verify the current number of snapshots for the volume
+
+aws ec2 describe-snapshots --filters "Name=volume-id,Values=<volume-id>" --query 'Snapshots[*].SnapshotId'
+
+#2.4.4 Execute snapshotter.ps1
+
+c:\temp\snapshotter.ps1 <region>
+
+#2.4.5 Re-examine the current number of snapshots for the volume
+
+aws ec2 describe-snapshots --filters "Name=volume-id,Values=<volume-id>" --query 'Snapshots[*].SnapshotId'
 
