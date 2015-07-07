@@ -179,3 +179,69 @@ aws s3 sync c:\temp\ s3://dicconlab3w/MyTempFolder
 aws s3 ls s3://dicconlab3w/MyTempFolder/
 
 aws s3 ls s3://dicconlab3w/MyTempFolder/files/
+
+
+
+<#
+Solutions
+++++4. Challenge Solution - Synchronize Folder with Amazon S3++++
+
+==================================================================================================================
+4.1 Download and Unzip Sample Files
+==================================================================================================================
+
+4.1.1 Download files
+
+(New-Object System.Net.WebClient).DownloadFile("https://d2lrzjb0vjvpn5.cloudfront.net/sys-ops/v2.2/lab-3-storage-windows/static/files.zip", "c:\temp\files.zip")
+
+
+==================================================================================================================
+4.2 Synchronize Files
+==================================================================================================================
+
+4.2.1 Set versioning on bucket
+
+aws s3api put-bucket-versioning --bucket <s3-bucket-name> --versioning-configuration Status=Enabled
+
+4.2.2 Synchronize files
+
+aws s3 sync files s3://<s3-bucket-name>/files/
+
+4.2.3 Confirm your files on Amazon S3
+
+aws s3 ls s3://<s3-bucket-name>/files/
+
+4.2.4 Delete file1.txt
+
+del files\file1.txt
+
+4.2.5 Synchronize, requesting deletion of files no longer in the source directory
+
+aws s3 sync files s3://<s3-bucket-name>/files/ --delete
+
+4.2.6 Verify that the item was deleted in Amazon S3
+
+aws s3 ls s3://<s3-bucket-name>/files/
+
+4.2.7 Find past versions of file1.txt
+
+aws s3api list-object-versions --bucket <s3-bucket-name> --prefix files/file1.txt
+
+4.2.8 Restore previous version of file to local file system
+
+aws s3api get-object --bucket <s3-bucket-name> --key files/file1.txt --version-id <version-id> files/file1.txt
+
+4.2.9 Verify that the file has been restored locally
+
+dir files
+
+4.2.10 Re-sync the folder to Amazon S3
+
+aws s3 sync files s3://<s3-bucket-name>/files/
+
+4.2.11 Verify that the file has been restored to the bucket
+
+aws s3 ls s3://<s3-bucket-name>/files/
+
+
+#>
