@@ -1387,3 +1387,157 @@ At line:1 char:1
 
 
 PS C:\temp> (New-Object System.Net.WebClient).DownloadFile("https://d2lrzjb0vjvpn5.cloudfront.net/sys-ops/v2.2/lab-3-storage-windows/static/files.zip", "c:\temp\files.zip")
+
+PS C:\temp> aws s3api
+aws : usage: aws [options] <command> <subcommand> [parameters]
+At line:1 char:1
++ aws s3api
++ ~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (usage: aws [opt...d> [parameters]:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+aws.exe: error: too few arguments
+
+
+PS C:\temp> aws s3api --help
+aws : usage: aws [options] <command> <subcommand> [parameters]
+At line:1 char:1
++ aws s3api --help
++ ~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (usage: aws [opt...d> [parameters]:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+aws.exe: error: too few arguments
+
+
+PS C:\temp> "manually enabling versioning"
+manually enabling versioning
+
+              CurrentMatchIndex               ReplacementIndex              ReplacementLength CompletionMatches
+              -----------------               ----------------              ----------------- -----------------
+                             -1                           5823                              3 {System.Management.Automati...
+
+
+
+PS C:\temp> cd C:\temp
+
+PS C:\temp> gci
+
+
+    Directory: C:\temp
+
+
+Mode                LastWriteTime     Length Name
+----                -------------     ------ ----
+d----          7/7/2015  12:17 PM            aws
+-a---          7/7/2015   1:27 PM      72074 files.zip
+-a---          7/7/2015   1:13 PM         88 loggen.ps1
+
+
+
+PS C:\temp> gci -Recurse
+
+
+    Directory: C:\temp
+
+
+Mode                LastWriteTime     Length Name
+----                -------------     ------ ----
+d----          7/7/2015  12:17 PM            aws
+d----          7/7/2015   1:32 PM            files
+-a---          7/7/2015   1:27 PM      72074 files.zip
+-a---          7/7/2015   1:13 PM         88 loggen.ps1
+
+
+    Directory: C:\temp\aws
+
+
+Mode                LastWriteTime     Length Name
+----                -------------     ------ ----
+-a---          7/7/2015  12:16 PM    7335936 AWSCLI64.msi
+-a---          7/7/2015  12:17 PM   24006656 AWSNETSDK.msi
+
+
+    Directory: C:\temp\files
+
+
+Mode                LastWriteTime     Length Name
+----                -------------     ------ ----
+-a---        10/15/2014   2:16 PM      30318 file1.txt
+-a---        10/15/2014   2:16 PM      43784 file2.txt
+-a---        10/15/2014   2:17 PM      96675 file3.txt
+
+
+
+              CurrentMatchIndex               ReplacementIndex              ReplacementLength CompletionMatches
+              -----------------               ----------------              ----------------- -----------------
+                             -1                           5860                              3 {System.Management.Automati...
+
+
+
+              CurrentMatchIndex               ReplacementIndex              ReplacementLength CompletionMatches
+              -----------------               ----------------              ----------------- -----------------
+                             -1                           5860                              8 {System.Management.Automati...
+
+
+
+PS C:\temp> aws s3 ls s3://dicconlab3w/MyTempFolder
+
+PS C:\temp> aws s3 sync c:\temp\ s3://dicconlab3w/MyTempFolder
+upload: .\loggen.ps1 to s3://dicconlab3w/MyTempFolder/loggen.ps1
+Completed 1 of 9 part(s) with 6 file(s) remaining
+upload: .\files.zip to s3://dicconlab3w/MyTempFolder/files.zip
+Completed 2 of 9 part(s) with 5 file(s) remaining
+upload: files\file2.txt to s3://dicconlab3w/MyTempFolder/files/file2.txt
+Completed 3 of 9 part(s) with 4 file(s) remaining
+upload: files\file1.txt to s3://dicconlab3w/MyTempFolder/files/file1.txt
+Completed 4 of 9 part(s) with 3 file(s) remaining
+upload: files\file3.txt to s3://dicconlab3w/MyTempFolder/files/file3.txt
+Completed 5 of 9 part(s) with 2 file(s) remaining
+upload: aws\AWSCLI64.msi to s3://dicconlab3w/MyTempFolder/aws/AWSCLI64.msi
+Completed 6 of 9 part(s) with 1 file(s) remaining
+Completed 7 of 9 part(s) with 1 file(s) remaining
+Completed 8 of 9 part(s) with 1 file(s) remaining
+Completed 9 of 9 part(s) with 1 file(s) remaining
+upload: aws\AWSNETSDK.msi to s3://dicconlab3w/MyTempFolder/aws/AWSNETSDK.msi
+
+PS C:\temp> aws s3 ls s3://dicconlab3w/MyTempFolder
+                           PRE MyTempFolder/
+
+              CurrentMatchIndex               ReplacementIndex              ReplacementLength CompletionMatches
+              -----------------               ----------------              ----------------- -----------------
+                             -1                           5953                             30 {}
+
+
+
+PS C:\temp> aws s3 ls s3://dicconlab3w/MyTempFolder/*
+
+PS C:\temp> aws s3 ls s3://dicconlab3w/MyTempFolder/
+                           PRE aws/
+                           PRE files/
+2015-07-07 13:33:04      72074 files.zip
+2015-07-07 13:33:04         88 loggen.ps1
+
+              CurrentMatchIndex               ReplacementIndex              ReplacementLength CompletionMatches
+              -----------------               ----------------              ----------------- -----------------
+                             -1                           5997                             36 {}
+
+
+
+              CurrentMatchIndex               ReplacementIndex              ReplacementLength CompletionMatches
+              -----------------               ----------------              ----------------- -----------------
+                             -1                              0                              5 {System.Management.Automati...
+
+
+
+              CurrentMatchIndex               ReplacementIndex              ReplacementLength CompletionMatches
+              -----------------               ----------------              ----------------- -----------------
+                             -1                              0                              5 {System.Management.Automati...
+
+
+
+PS C:\temp> Stop-Transcript
+**********************
+Windows PowerShell transcript end
+End time: 20150707134340
+**********************

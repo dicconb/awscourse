@@ -165,3 +165,17 @@ get-job * | Stop-Job
 #4.1.1 Download files
 
 (New-Object System.Net.WebClient).DownloadFile("https://d2lrzjb0vjvpn5.cloudfront.net/sys-ops/v2.2/lab-3-storage-windows/static/files.zip", "c:\temp\files.zip")
+
+aws s3api --help
+
+"manually enabling versioning"
+
+cd C:\temp
+gci -Recurse
+
+aws s3 ls s3://dicconlab3w/MyTempFolder
+aws s3 sync c:\temp\ s3://dicconlab3w/MyTempFolder
+
+aws s3 ls s3://dicconlab3w/MyTempFolder/
+
+aws s3 ls s3://dicconlab3w/MyTempFolder/files/
