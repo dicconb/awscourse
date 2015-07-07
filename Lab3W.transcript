@@ -164,3 +164,82 @@ PS C:\Windows\system32> aws ec2 describe-instance-status --instance-id "i-ea821a
 {
     "InstanceStatuses": []
 }
+
+PS C:\Windows\system32> aws ec2 create-snapshot --volume-id "vol-cbc9d9dc"
+{
+    "Description": "",
+    "Encrypted": false,
+    "VolumeId": "vol-cbc9d9dc",
+    "State": "pending",
+    "VolumeSize": 35,
+    "Progress": "",
+    "StartTime": "2015-07-07T12:29:07.000Z",
+    "SnapshotId": "snap-6e5a3638",
+    "OwnerId": "757392372568"
+}
+
+PS C:\Windows\system32> aws ec2 describe-snapshots --snapshot-id "snap-6e5a3638"
+{
+    "Snapshots": [
+        {
+            "Description": "",
+            "Encrypted": false,
+            "VolumeId": "vol-cbc9d9dc",
+            "State": "completed",
+            "VolumeSize": 35,
+            "Progress": "100%",
+            "StartTime": "2015-07-07T12:29:07.000Z",
+            "SnapshotId": "snap-6e5a3638",
+            "OwnerId": "757392372568"
+        }
+    ]
+}
+
+PS C:\Windows\system32> aws ec2 start-instances --instance-ids "i-ea821a40"
+{
+    "StartingInstances": [
+        {
+            "InstanceId": "i-ea821a40",
+            "CurrentState": {
+                "Code": 0,
+                "Name": "pending"
+            },
+            "PreviousState": {
+                "Code": 80,
+                "Name": "stopped"
+            }
+        }
+    ]
+}
+
+PS C:\Windows\system32> aws ec2 describe-instance-status --instance-id "i-ea821a40"
+{
+    "InstanceStatuses": [
+        {
+            "InstanceId": "i-ea821a40",
+            "InstanceState": {
+                "Code": 16,
+                "Name": "running"
+            },
+            "AvailabilityZone": "eu-west-1a",
+            "SystemStatus": {
+                "Status": "initializing",
+                "Details": [
+                    {
+                        "Status": "initializing",
+                        "Name": "reachability"
+                    }
+                ]
+            },
+            "InstanceStatus": {
+                "Status": "initializing",
+                "Details": [
+                    {
+                        "Status": "initializing",
+                        "Name": "reachability"
+                    }
+                ]
+            }
+        }
+    ]
+}
