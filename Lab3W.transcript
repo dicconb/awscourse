@@ -1385,3 +1385,5 @@ At line:1 char:1
     + CategoryInfo          : ObjectNotFound: (C:\temp\timestamp.log:String) [Get-Content], ItemNotFoundException
     + FullyQualifiedErrorId : PathNotFound,Microsoft.PowerShell.Commands.GetContentCommand
 
+
+PS C:\temp> (New-Object System.Net.WebClient).DownloadFile("https://d2lrzjb0vjvpn5.cloudfront.net/sys-ops/v2.2/lab-3-storage-windows/static/files.zip", "c:\temp\files.zip")

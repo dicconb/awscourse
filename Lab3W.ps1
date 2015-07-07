@@ -151,3 +151,17 @@ aws s3 ls s3://dicconlab3w/logfiles/
 aws s3 ls s3://dicconlab3w/logfiles/archive/
 
 get-job * | Stop-Job
+
+
+
+<#
+
+++++4. Challenge Solution - Synchronize Folder with Amazon S3++++
+
+==================================================================================================================
+4.1 Download and Unzip Sample Files
+==================================================================================================================
+#>
+#4.1.1 Download files
+
+(New-Object System.Net.WebClient).DownloadFile("https://d2lrzjb0vjvpn5.cloudfront.net/sys-ops/v2.2/lab-3-storage-windows/static/files.zip", "c:\temp\files.zip")
