@@ -1,0 +1,19 @@
+#3.3.1 Obtain current memory utilization of all HTTPd instances
+
+mem=$(ps -C httpd -O rss | gawk '{ count ++; sum += $2 }; END {count --; print sum/1024 ;};')
+
+#3.3.2 Verify $mem
+
+echo $mem
+
+#3.3.3 Retrieve the instance ID of the current instance
+
+instance_id=$(curl -s -w '\n' http://169.254.169.254/latest/meta-data/instance-id)
+
+#3.3.4 Verify $instance_id
+
+echo $instance_id
+
+#3.3.5 Define your custom metric
+
+aws cloudwatch put-metric-data --namespace HttpServerMetrics --metric-name HttpServerMemUtilization --dimension InstanceId=$instance_id --value $mem --unit "Megabytes"
