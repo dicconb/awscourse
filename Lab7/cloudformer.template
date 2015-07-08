@@ -1,0 +1,531 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Resources": {
+    "vpc970685f2": {
+      "Type": "AWS::EC2::VPC",
+      "Properties": {
+        "CidrBlock": "10.1.0.0/16",
+        "InstanceTenancy": "default",
+        "EnableDnsSupport": "true",
+        "EnableDnsHostnames": "true",
+        "Tags": [
+          {
+            "Key": "CustomerName",
+            "Value": "qa"
+          },
+          {
+            "Key": "ResourceGroup",
+            "Value": "CloudFormationResource"
+          },
+          {
+            "Key": "LabName",
+            "Value": "406"
+          },
+          {
+            "Key": "Name",
+            "Value": "Lab VPC"
+          },
+          {
+            "Key": "VPC",
+            "Value": "System Operations v2.1 Lab 7 - CloudFormation"
+          }
+        ]
+      }
+    },
+    "subnetce3f40ab": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "CidrBlock": "10.1.50.0/24",
+        "AvailabilityZone": "eu-west-1a",
+        "VpcId": {
+          "Ref": "vpc970685f2"
+        },
+        "Tags": [
+          {
+            "Key": "ResourceGroup",
+            "Value": "CloudFormationResource"
+          },
+          {
+            "Key": "CustomerName",
+            "Value": "qa"
+          },
+          {
+            "Key": "Name",
+            "Value": "Private Subnet 1"
+          },
+          {
+            "Key": "LabName",
+            "Value": "406"
+          }
+        ]
+      }
+    },
+    "subnetc93f40ac": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "CidrBlock": "10.1.10.0/24",
+        "AvailabilityZone": "eu-west-1a",
+        "VpcId": {
+          "Ref": "vpc970685f2"
+        },
+        "Tags": [
+          {
+            "Key": "CustomerName",
+            "Value": "qa"
+          },
+          {
+            "Key": "Name",
+            "Value": "Public Subnet 1"
+          },
+          {
+            "Key": "ResourceGroup",
+            "Value": "CloudFormationResource"
+          },
+          {
+            "Key": "LabName",
+            "Value": "406"
+          }
+        ]
+      }
+    },
+    "igwf97bdf9c": {
+      "Type": "AWS::EC2::InternetGateway",
+      "Properties": {
+        "Tags": [
+          {
+            "Key": "CustomerName",
+            "Value": "qa"
+          },
+          {
+            "Key": "LabName",
+            "Value": "406"
+          }
+        ]
+      }
+    },
+    "acl45089520": {
+      "Type": "AWS::EC2::NetworkAcl",
+      "Properties": {
+        "VpcId": {
+          "Ref": "vpc970685f2"
+        }
+      }
+    },
+    "acl23089546": {
+      "Type": "AWS::EC2::NetworkAcl",
+      "Properties": {
+        "VpcId": {
+          "Ref": "vpc970685f2"
+        },
+        "Tags": [
+          {
+            "Key": "ResourceGroup",
+            "Value": "CloudFormationResource"
+          },
+          {
+            "Key": "LabName",
+            "Value": "406"
+          },
+          {
+            "Key": "CustomerName",
+            "Value": "qa"
+          },
+          {
+            "Key": "Network",
+            "Value": "Private"
+          }
+        ]
+      }
+    },
+    "rtb2edd454b": {
+      "Type": "AWS::EC2::RouteTable",
+      "Properties": {
+        "VpcId": {
+          "Ref": "vpc970685f2"
+        }
+      }
+    },
+    "rtb13dd4576": {
+      "Type": "AWS::EC2::RouteTable",
+      "Properties": {
+        "VpcId": {
+          "Ref": "vpc970685f2"
+        },
+        "Tags": [
+          {
+            "Key": "CustomerName",
+            "Value": "qa"
+          },
+          {
+            "Key": "ResourceGroup",
+            "Value": "CloudFormationResource"
+          },
+          {
+            "Key": "LabName",
+            "Value": "406"
+          },
+          {
+            "Key": "Name",
+            "Value": "Public"
+          }
+        ]
+      }
+    },
+    "rtb10dd4575": {
+      "Type": "AWS::EC2::RouteTable",
+      "Properties": {
+        "VpcId": {
+          "Ref": "vpc970685f2"
+        },
+        "Tags": [
+          {
+            "Key": "CustomerName",
+            "Value": "qa"
+          },
+          {
+            "Key": "Name",
+            "Value": "Private"
+          },
+          {
+            "Key": "ResourceGroup",
+            "Value": "CloudFormationResource"
+          },
+          {
+            "Key": "LabName",
+            "Value": "406"
+          }
+        ]
+      }
+    },
+    "instanceic843d962": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "DisableApiTermination": "false",
+        "InstanceInitiatedShutdownBehavior": "stop",
+        "ImageId": "ami-6e7bd919",
+        "InstanceType": "t2.small",
+        "Monitoring": "false",
+        "Tags": [
+          {
+            "Key": "ResourceGroup",
+            "Value": "CloudFormationResource"
+          },
+          {
+            "Key": "Name",
+            "Value": "NAT"
+          },
+          {
+            "Key": "LabName",
+            "Value": "406"
+          },
+          {
+            "Key": "CustomerName",
+            "Value": "qa"
+          }
+        ],
+        "NetworkInterfaces": [
+          {
+            "DeleteOnTermination": "true",
+            "DeviceIndex": 0,
+            "SubnetId": {
+              "Ref": "subnetc93f40ac"
+            },
+            "PrivateIpAddresses": [
+              {
+                "PrivateIpAddress": "10.1.10.182",
+                "Primary": "true"
+              }
+            ],
+            "GroupSet": [
+              {
+                "Ref": "sgqlstack2labinstance10683ece0dfab44364c88b6512146acde713eNATSecurityGroup1XG6GL62GDI2V"
+              }
+            ],
+            "AssociatePublicIpAddress": "true"
+          }
+        ]
+      }
+    },
+    "instancei4e43d9e4": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "DisableApiTermination": "false",
+        "InstanceInitiatedShutdownBehavior": "stop",
+        "ImageId": "ami-6e7bd919",
+        "InstanceType": "t2.micro",
+        "KeyName": "qwikLABS-L406-10683",
+        "Monitoring": "false",
+        "Tags": [
+          {
+            "Key": "ResourceGroup",
+            "Value": "CloudFormationResource"
+          },
+          {
+            "Key": "CustomerName",
+            "Value": "qa"
+          },
+          {
+            "Key": "LabName",
+            "Value": "406"
+          },
+          {
+            "Key": "Name",
+            "Value": "BastionServer"
+          }
+        ],
+        "NetworkInterfaces": [
+          {
+            "DeleteOnTermination": "true",
+            "DeviceIndex": 0,
+            "SubnetId": {
+              "Ref": "subnetce3f40ab"
+            },
+            "PrivateIpAddresses": [
+              {
+                "PrivateIpAddress": "10.1.50.38",
+                "Primary": "true"
+              }
+            ],
+            "GroupSet": [
+              {
+                "Ref": "sgqlstack2labinstance10683ece0dfab44364c88b6512146acde713eBastionServerSecurityGroup1AHAZGQQ11FUS"
+              }
+            ],
+            "AssociatePublicIpAddress": "true"
+          }
+        ]
+      }
+    },
+    "sgqlstack2labinstance10683ece0dfab44364c88b6512146acde713eNATSecurityGroup1XG6GL62GDI2V": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Enable internal access to the NAT device",
+        "VpcId": {
+          "Ref": "vpc970685f2"
+        },
+        "Tags": [
+          {
+            "Key": "LabName",
+            "Value": "406"
+          },
+          {
+            "Key": "CustomerName",
+            "Value": "qa"
+          }
+        ]
+      }
+    },
+    "sgqlstack2labinstance10683ece0dfab44364c88b6512146acde713eBastionServerSecurityGroup1AHAZGQQ11FUS": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Security Group for bastion server",
+        "VpcId": {
+          "Ref": "vpc970685f2"
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "BastionServerSecurityGroup"
+          },
+          {
+            "Key": "CustomerName",
+            "Value": "qa"
+          },
+          {
+            "Key": "ResourceGroup",
+            "Value": "CloudFormationResource"
+          },
+          {
+            "Key": "LabName",
+            "Value": "406"
+          }
+        ]
+      }
+    },
+    "acl1": {
+      "Type": "AWS::EC2::NetworkAclEntry",
+      "Properties": {
+        "CidrBlock": "0.0.0.0/0",
+        "Egress": "true",
+        "Protocol": "-1",
+        "RuleAction": "allow",
+        "RuleNumber": "100",
+        "NetworkAclId": {
+          "Ref": "acl45089520"
+        }
+      }
+    },
+    "acl2": {
+      "Type": "AWS::EC2::NetworkAclEntry",
+      "Properties": {
+        "CidrBlock": "0.0.0.0/0",
+        "Protocol": "-1",
+        "RuleAction": "allow",
+        "RuleNumber": "100",
+        "NetworkAclId": {
+          "Ref": "acl45089520"
+        }
+      }
+    },
+    "subnetacl1": {
+      "Type": "AWS::EC2::SubnetNetworkAclAssociation",
+      "Properties": {
+        "NetworkAclId": {
+          "Ref": "acl45089520"
+        },
+        "SubnetId": {
+          "Ref": "subnetce3f40ab"
+        }
+      }
+    },
+    "subnetacl2": {
+      "Type": "AWS::EC2::SubnetNetworkAclAssociation",
+      "Properties": {
+        "NetworkAclId": {
+          "Ref": "acl45089520"
+        },
+        "SubnetId": {
+          "Ref": "subnetc93f40ac"
+        }
+      }
+    },
+    "gw1": {
+      "Type": "AWS::EC2::VPCGatewayAttachment",
+      "Properties": {
+        "VpcId": {
+          "Ref": "vpc970685f2"
+        },
+        "InternetGatewayId": {
+          "Ref": "igwf97bdf9c"
+        }
+      }
+    },
+    "subnetroute2": {
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "rtb13dd4576"
+        },
+        "SubnetId": {
+          "Ref": "subnetc93f40ac"
+        }
+      }
+    },
+    "subnetroute3": {
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "rtb10dd4575"
+        },
+        "SubnetId": {
+          "Ref": "subnetce3f40ab"
+        }
+      }
+    },
+    "route1": {
+      "Type": "AWS::EC2::Route",
+      "Properties": {
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "RouteTableId": {
+          "Ref": "rtb13dd4576"
+        },
+        "GatewayId": {
+          "Ref": "igwf97bdf9c"
+        }
+      },
+      "DependsOn": "gw1"
+    },
+    "route2": {
+      "Type": "AWS::EC2::Route",
+      "Properties": {
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "RouteTableId": {
+          "Ref": "rtb10dd4575"
+        },
+        "InstanceId": {
+          "Ref": "instanceic843d962"
+        }
+      }
+    },
+    "dchpassoc1": {
+      "Type": "AWS::EC2::VPCDHCPOptionsAssociation",
+      "Properties": {
+        "VpcId": {
+          "Ref": "vpc970685f2"
+        },
+        "DhcpOptionsId": "dopt-64fc0f0f"
+      }
+    },
+    "ingress1": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "GroupId": {
+          "Ref": "sgqlstack2labinstance10683ece0dfab44364c88b6512146acde713eNATSecurityGroup1XG6GL62GDI2V"
+        },
+        "IpProtocol": "tcp",
+        "FromPort": "0",
+        "ToPort": "1024",
+        "CidrIp": "10.1.50.0/24"
+      }
+    },
+    "ingress2": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "GroupId": {
+          "Ref": "sgqlstack2labinstance10683ece0dfab44364c88b6512146acde713eNATSecurityGroup1XG6GL62GDI2V"
+        },
+        "IpProtocol": "udp",
+        "FromPort": "0",
+        "ToPort": "1024",
+        "CidrIp": "10.1.50.0/24"
+      }
+    },
+    "ingress3": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "GroupId": {
+          "Ref": "sgqlstack2labinstance10683ece0dfab44364c88b6512146acde713eBastionServerSecurityGroup1AHAZGQQ11FUS"
+        },
+        "IpProtocol": "tcp",
+        "FromPort": "22",
+        "ToPort": "22",
+        "CidrIp": "0.0.0.0/0"
+      }
+    },
+    "egress1": {
+      "Type": "AWS::EC2::SecurityGroupEgress",
+      "Properties": {
+        "GroupId": {
+          "Ref": "sgqlstack2labinstance10683ece0dfab44364c88b6512146acde713eNATSecurityGroup1XG6GL62GDI2V"
+        },
+        "IpProtocol": "tcp",
+        "FromPort": "0",
+        "ToPort": "65535",
+        "CidrIp": "0.0.0.0/0"
+      }
+    },
+    "egress2": {
+      "Type": "AWS::EC2::SecurityGroupEgress",
+      "Properties": {
+        "GroupId": {
+          "Ref": "sgqlstack2labinstance10683ece0dfab44364c88b6512146acde713eNATSecurityGroup1XG6GL62GDI2V"
+        },
+        "IpProtocol": "udp",
+        "FromPort": "0",
+        "ToPort": "65535",
+        "CidrIp": "0.0.0.0/0"
+      }
+    },
+    "egress3": {
+      "Type": "AWS::EC2::SecurityGroupEgress",
+      "Properties": {
+        "GroupId": {
+          "Ref": "sgqlstack2labinstance10683ece0dfab44364c88b6512146acde713eBastionServerSecurityGroup1AHAZGQQ11FUS"
+        },
+        "IpProtocol": "-1",
+        "CidrIp": "0.0.0.0/0"
+      }
+    }
+  },
+  "Description": "mylabtemplate"
+}
