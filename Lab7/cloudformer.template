@@ -1,5 +1,15 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
+  "Parameters" : {
+    "BastionKeyName" : {
+      "Type" : "String",
+      "Description" : "The bastion server key."
+    }, 
+    "BastionSecurityCIDR" : {
+      "Type" : "String",
+      "Description" : "The CIDR block range for SSH."
+    }		
+  },
   "Resources": {
     "vpc970685f2": {
       "Type": "AWS::EC2::VPC",
@@ -285,8 +295,10 @@
         "InstanceInitiatedShutdownBehavior": "stop",
         "ImageId": "ami-6e7bd919",
         "InstanceType": "t2.micro",
-        "KeyName": "qwikLABS-L406-10683",
-        "Monitoring": "false",
+        "KeyName" : {
+          "Ref" : "BastionKeyName"
+        },
+	"Monitoring": "false",
         "Tags": [
           {
             "Key": "ResourceGroup",
