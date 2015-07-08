@@ -55,6 +55,7 @@ aws ec2 describe-instances --filter "Name=tag:Project,Values=ERPSystem" --query 
 
 #2.2.1 Stop all development instances for the ERPSystem project
 
+Get-Content "c:\temp\stopinator.ps1"
 c:\temp\stopinator.ps1 -tags "Project=ERPSystem;Environment=development"
 
 #2.2.6 Restart the development instances for the ERPSystem project
@@ -68,7 +69,67 @@ c:\temp\stopinator.ps1 -tags "Project=ERPSystem;Environment=development" -start
 #3.3. Run the Script
 #==================================================================================================================
 
+<#
+My attempt before reading solution
+#>
+
+$allinstances = aws ec2 describe-instances | out-string | ConvertFrom-Json | select -expand reservations
+$allinstances.count
+
+$allinstances | ft -auto
+
+$allinstances.instances | ft -auto
+
+$allinstances.instances | select -first 1 | fl
+
+$allinstances.instances | group-object subnetid
+
+$allinstances = (aws ec2 describe-instances | out-string | ConvertFrom-Json).reservations.instances
+
+$allinstances | group-object subnetid
+
+$privatesubnetinstances = $allinstances | ?{$_.subnetid -eq "subnet-4b1ba512"}
+
+$privatesubnetinstances | select -first 1
+
+($privatesubnetinstances | select -first 1).Tags | gm
+
+$privatesubnetinstances | %{($_.tags | ?{$_.key -eq "Environment"}).Value}
+
+$privatesubnetinstances | %{($_.tags | ?{$_.key -eq "Environment"}).Value}
+
+$privatesubnetinstances | ?{($_.tags.Key -notcontains "Environment")}
+
+$privatesubnetinstances | %{($_.tags.Key)}
+
+
+aws ec2 describe-instances --filter "Name=tag:Environment,Values=''" --query 'Reservations[*].Instances[*].{ID:InstanceId,AZ:Placement.AvailabilityZone}'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #3.3.4 Run the terminate-instance.php script
 
-c:\temp\terminate-instances.ps1 -region [region] -subnetid [subnet-id]
+get-content "c:\temp\terminate-instances.ps1"
 
+#c:\temp\terminate-instances.ps1 -region [region] -subnetid [subnet-id]
+c:\temp\terminate-instances.ps1 -region "eu-west-1" -subnetid "subnet-4b1ba512"
+
+
+
+#another crack (after removing a tag)
+$allinstances = (aws ec2 describe-instances | out-string | ConvertFrom-Json).reservations.instances
+$privatesubnetinstances = $allinstances | ?{$_.subnetid -eq "subnet-4b1ba512"}
+$noncompliantinstances = $privatesubnetinstances | ?{($_.tags.Key -notcontains "Environment") -or (($_.tags | ?{$_.key -eq "Environment"}).Value -eq "")}
+$noncompliantinstances | %{Get-EC2Instance -Instance $_.InstanceId -Region "eu-west-1"} | Stop-EC2Instance -Terminate -Region "eu-west-1"
