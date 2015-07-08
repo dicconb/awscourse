@@ -36,8 +36,14 @@
       "Type": "AWS::EC2::Subnet",
       "Properties": {
         "CidrBlock": "10.1.50.0/24",
-        "AvailabilityZone": "eu-west-1a",
-        "VpcId": {
+        "AvailabilityZone" : {
+          "Fn::Select" : ["0", {
+            "Fn::GetAZs" : {
+              "Ref" : "AWS::Region"
+            }
+          }]
+        },
+	"VpcId": {
           "Ref": "vpc970685f2"
         },
         "Tags": [
@@ -64,8 +70,14 @@
       "Type": "AWS::EC2::Subnet",
       "Properties": {
         "CidrBlock": "10.1.10.0/24",
-        "AvailabilityZone": "eu-west-1a",
-        "VpcId": {
+        "AvailabilityZone" : {
+          "Fn::Select" : ["1", {
+            "Fn::GetAZs" : {
+              "Ref" : "AWS::Region"
+            }
+          }]
+        },
+	"VpcId": {
           "Ref": "vpc970685f2"
         },
         "Tags": [
