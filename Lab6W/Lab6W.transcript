@@ -1025,3 +1025,41 @@ PS C:\Windows\system32> aws ec2 describe-instance-status --instance-id $instance
                                         -1                                       1995                                         1 {System.Management.Automation.Completi...
 
 
+
+PS C:\Windows\system32> aws ec2 describe-instance-status --instance-id $instanceid
+{
+    "InstanceStatuses": [
+        {
+            "InstanceId": "i-3138399b",
+            "InstanceState": {
+                "Code": 16,
+                "Name": "running"
+            },
+            "AvailabilityZone": "eu-west-1a",
+            "SystemStatus": {
+                "Status": "ok",
+                "Details": [
+                    {
+                        "Status": "passed",
+                        "Name": "reachability"
+                    }
+                ]
+            },
+            "InstanceStatus": {
+                "Status": "impaired",
+                "Details": [
+                    {
+                        "Status": "failed",
+                        "ImpairedSince": "2015-07-08T12:52:00.000Z",
+                        "Name": "reachability"
+                    }
+                ]
+            }
+        }
+    ]
+}
+
+PS C:\Windows\system32> aws ec2 create-image --name WebServer --instance-id $instanceid
+{
+    "ImageId": "ami-6afebc1d"
+}

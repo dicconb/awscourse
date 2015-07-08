@@ -41,4 +41,4 @@ $publicdnsname = $publicdnsname -replace '"',''
 
 aws ec2 create-image --name WebServer --instance-id $instanceid
 
-$newami = "ami-b6f9bbc1"
+$newami = "ami-6afebc1d"
