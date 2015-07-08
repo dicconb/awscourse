@@ -7,3 +7,1021 @@ Machine: WIN-M34Q90KP8P1 (Microsoft Windows NT 6.2.9200.0)
 Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell_ise.exe
 Process ID: 4028
 **********************
+
+                         CurrentMatchIndex                           ReplacementIndex                         ReplacementLength CompletionMatches
+                         -----------------                           ----------------                         ----------------- -----------------
+                                        -1                                         91                                         4 {System.Management.Automation.Completi...
+
+
+
+                         CurrentMatchIndex                           ReplacementIndex                         ReplacementLength CompletionMatches
+                         -----------------                           ----------------                         ----------------- -----------------
+                                        -1                                        103                                         3 {System.Management.Automation.Completi...
+
+
+
+                         CurrentMatchIndex                           ReplacementIndex                         ReplacementLength CompletionMatches
+                         -----------------                           ----------------                         ----------------- -----------------
+                                        -1                                        103                                         8 {System.Management.Automation.Completi...
+
+
+
+PS C:\Windows\system32> get-content C:\temp\UserData.txt
+<powershell>
+Set-ExecutionPolicy Unrestricted -Force
+New-Item -ItemType directory -Path 'C:\temp'
+
+# Install IIS and Web Management Tools.
+Import-Module ServerManager
+install-windowsfeature web-server, web-webserver -IncludeAllSubFeature
+install-windowsfeature web-mgmt-tools
+
+# Download the files for our web application.
+Set-Location -Path C:\inetpub\wwwroot
+
+$shell_app = new-object -com shell.application
+(New-Object System.Net.WebClient).DownloadFile("https://us-west-2-aws-training.s3.amazonaws.com/awsu-ilt/sys-ops/v2.1/lab-6-scaling-windows/static/stressapp.zip", (Get-L
+ocation).Path + "\stressapp.zip")
+
+$zipfile = $shell_app.Namespace((Get-Location).Path + "\stressapp.zip")
+$destination = $shell_app.Namespace((Get-Location).Path)
+$destination.copyHere($zipfile.items())
+
+# Create the web app in IIS8.
+New-WebApplication -Name stressapp -PhysicalPath c:\inetpub\wwwroot\stressapp -Site "Default Web Site" -force
+
+# Download consume.exe for emulating load generation
+(new-object net.webclient).DownloadFile('https://us-west-2-aws-training.s3.amazonaws.com/awsu-ilt/sys-ops/v2.1/lab-6-scaling-windows/static/consume.exe', 'c:\temp\consum
+e.exe')
+</powershell>
+
+                         CurrentMatchIndex                           ReplacementIndex                         ReplacementLength CompletionMatches
+                         -----------------                           ----------------                         ----------------- -----------------
+                                        -1                                        127                                         4 {}
+
+
+
+                         CurrentMatchIndex                           ReplacementIndex                         ReplacementLength CompletionMatches
+                         -----------------                           ----------------                         ----------------- -----------------
+                                        -1                                        152                                         7 {}
+
+
+
+                         CurrentMatchIndex                           ReplacementIndex                         ReplacementLength CompletionMatches
+                         -----------------                           ----------------                         ----------------- -----------------
+                                        -1                                        183                                         9 {}
+
+
+
+                         CurrentMatchIndex                           ReplacementIndex                         ReplacementLength CompletionMatches
+                         -----------------                           ----------------                         ----------------- -----------------
+                                        -1                                        766                                         1 {System.Management.Automation.Completi...
+
+
+
+                         CurrentMatchIndex                           ReplacementIndex                         ReplacementLength CompletionMatches
+                         -----------------                           ----------------                         ----------------- -----------------
+                                        -1                                        806                                         1 {System.Management.Automation.Completi...
+
+
+
+                         CurrentMatchIndex                           ReplacementIndex                         ReplacementLength CompletionMatches
+                         -----------------                           ----------------                         ----------------- -----------------
+                                        -1                                        212                                         1 {System.Management.Automation.Completi...
+
+
+
+PS C:\Windows\system32> 
+$amiid = "ami-c1740ab6"
+$subnetid = "subnet-d7c6a2a0"
+$kp = "qwikLABS-L405-10674"
+$sgid = "sg-a0c5c8c5"
+
+                         CurrentMatchIndex                           ReplacementIndex                         ReplacementLength CompletionMatches
+                         -----------------                           ----------------                         ----------------- -----------------
+                                        -1                                        915                                         1 {System.Management.Automation.Completi...
+
+
+
+PS C:\Windows\system32> aws ec2 run-instances --key-name $kp --instance-type t2.micro --image-id $amiid --user-data file://c:\temp\UserData.txt --security-group-ids $sgid --subnet-id $subnetid --associate-public-ip-address
+{
+    "OwnerId": "829339622987",
+    "ReservationId": "r-eccee50b",
+    "Groups": [],
+    "Instances": [
+        {
+            "Monitoring": {
+                "State": "disabled"
+            },
+            "PublicDnsName": "",
+            "Platform": "windows",
+            "State": {
+                "Code": 0,
+                "Name": "pending"
+            },
+            "EbsOptimized": false,
+            "LaunchTime": "2015-07-08T12:38:54.000Z",
+            "PrivateIpAddress": "10.5.10.23",
+            "ProductCodes": [],
+            "VpcId": "vpc-6278fb07",
+            "StateTransitionReason": "",
+            "InstanceId": "i-3138399b",
+            "ImageId": "ami-c1740ab6",
+            "PrivateDnsName": "ip-10-5-10-23.eu-west-1.compute.internal",
+            "KeyName": "qwikLABS-L405-10674",
+            "SecurityGroups": [
+                {
+                    "GroupName": "HTTP Access",
+                    "GroupId": "sg-a0c5c8c5"
+                }
+            ],
+            "ClientToken": "",
+            "SubnetId": "subnet-d7c6a2a0",
+            "InstanceType": "t2.micro",
+            "NetworkInterfaces": [
+                {
+                    "Status": "in-use",
+                    "MacAddress": "06:63:81:27:f0:97",
+                    "SourceDestCheck": true,
+                    "VpcId": "vpc-6278fb07",
+                    "Description": "",
+                    "NetworkInterfaceId": "eni-3dfa1274",
+                    "PrivateIpAddresses": [
+                        {
+                            "PrivateDnsName": "ip-10-5-10-23.eu-west-1.compute.internal",
+                            "Primary": true,
+                            "PrivateIpAddress": "10.5.10.23"
+                        }
+                    ],
+                    "PrivateDnsName": "ip-10-5-10-23.eu-west-1.compute.internal",
+                    "Attachment": {
+                        "Status": "attaching",
+                        "DeviceIndex": 0,
+                        "DeleteOnTermination": true,
+                        "AttachmentId": "eni-attach-b3c25ff1",
+                        "AttachTime": "2015-07-08T12:38:54.000Z"
+                    },
+                    "Groups": [
+                        {
+                            "GroupName": "HTTP Access",
+                            "GroupId": "sg-a0c5c8c5"
+                        }
+                    ],
+                    "SubnetId": "subnet-d7c6a2a0",
+                    "OwnerId": "829339622987",
+                    "PrivateIpAddress": "10.5.10.23"
+                }
+            ],
+            "SourceDestCheck": true,
+            "Placement": {
+                "Tenancy": "default",
+                "GroupName": "",
+                "AvailabilityZone": "eu-west-1a"
+            },
+            "Hypervisor": "xen",
+            "BlockDeviceMappings": [],
+            "Architecture": "x86_64",
+            "StateReason": {
+                "Message": "pending",
+                "Code": "pending"
+            },
+            "RootDeviceName": "/dev/sda1",
+            "VirtualizationType": "hvm",
+            "RootDeviceType": "ebs",
+            "AmiLaunchIndex": 0
+        }
+    ]
+}
+
+                         CurrentMatchIndex                           ReplacementIndex                         ReplacementLength CompletionMatches
+                         -----------------                           ----------------                         ----------------- -----------------
+                                        -1                                        956                                         1 {System.Management.Automation.Completi...
+
+
+
+PS C:\Windows\system32> $instanceid = "i-3138399b"
+
+
+                         CurrentMatchIndex                           ReplacementIndex                         ReplacementLength CompletionMatches
+                         -----------------                           ----------------                         ----------------- -----------------
+                                        -1                                       1071                                         1 {System.Management.Automation.Completi...
+
+
+
+PS C:\Windows\system32> aws ec2 describe-instance-status --instance-id $instanceid
+{
+    "InstanceStatuses": [
+        {
+            "InstanceId": "i-3138399b",
+            "InstanceState": {
+                "Code": 16,
+                "Name": "running"
+            },
+            "AvailabilityZone": "eu-west-1a",
+            "SystemStatus": {
+                "Status": "initializing",
+                "Details": [
+                    {
+                        "Status": "initializing",
+                        "Name": "reachability"
+                    }
+                ]
+            },
+            "InstanceStatus": {
+                "Status": "initializing",
+                "Details": [
+                    {
+                        "Status": "initializing",
+                        "Name": "reachability"
+                    }
+                ]
+            }
+        }
+    ]
+}
+
+                         CurrentMatchIndex                           ReplacementIndex                         ReplacementLength CompletionMatches
+                         -----------------                           ----------------                         ----------------- -----------------
+                                        -1                                       1143                                         8 {}
+
+
+
+                         CurrentMatchIndex                           ReplacementIndex                         ReplacementLength CompletionMatches
+                         -----------------                           ----------------                         ----------------- -----------------
+                                        -1                                       1143                                         9 {}
+
+
+
+PS C:\Windows\system32> aws ec2 describe-instance-status --instance-id $instanceid --query 'Reservations[*].Instances[*].{InstanceId,SystemStatus.Status}'
+aws :
+At line:1 char:1
++ aws ec2 describe-instance-status --instance-id $instanceid --query 'Reservations ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+Bad value for --query Reservations[*].Instances[*].{InstanceId,SystemStatus.Status}: Expecting: colon, got: comma: Parse error at column 40, token "," (COMMA), for
+expression:
+"Reservations[*].Instances[*].{InstanceId,SystemStatus.Status}"
+                                         ^
+
+
+PS C:\Windows\system32> aws ec2 describe-instance-status --instance-id $instanceid --query 'Reservations[*].Instances[*].{[InstanceId,SystemStatus.Status]}'
+aws :
+At line:1 char:1
++ aws ec2 describe-instance-status --instance-id $instanceid --query 'Reservations ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+Bad value for --query Reservations[*].Instances[*].{[InstanceId,SystemStatus.Status]}: Expecting: ['quoted_identifier', 'unquoted_identifier'], got: lbracket: Parse
+error at column 30, token "[" (LBRACKET), for expression:
+"Reservations[*].Instances[*].{[InstanceId,SystemStatus.Status]}"
+                               ^
+
+
+PS C:\Windows\system32> aws ec2 describe-instance-status --instance-id $instanceid --query 'Reservations[*].Instances[*].[InstanceId,SystemStatus.Status]'
+
+PS C:\Windows\system32> aws ec2 describe-instance-status --instance-id $instanceid --query 'Reservations[*].Instances[*].InstanceId'
+
+PS C:\Windows\system32> aws ec2 describe-instance-status --instance-id $instanceid --query 'Reservations[*].Instances[*]'
+
+PS C:\Windows\system32> $instanceid = "i-3138399b"
+
+PS C:\Windows\system32> aws ec2 describe-instance-status --instance-id $instanceid --query 'Reservations[*].Instances[*]'
+
+PS C:\Windows\system32> aws ec2 describe-instance-status --query 'Reservations[*].Instances[*]'
+
+PS C:\Windows\system32> aws ec2 describe-instances --query 'Reservations[*].Instances[*]'
+[
+    [
+        {
+            "Monitoring": {
+                "State": "disabled"
+            },
+            "PublicDnsName": "ec2-52-18-109-136.eu-west-1.compute.amazonaws.com",
+            "Platform": "windows",
+            "State": {
+                "Code": 16,
+                "Name": "running"
+            },
+            "EbsOptimized": false,
+            "LaunchTime": "2015-07-08T10:09:57.000Z",
+            "PublicIpAddress": "52.18.109.136",
+            "PrivateIpAddress": "10.5.10.71",
+            "ProductCodes": [],
+            "VpcId": "vpc-6278fb07",
+            "StateTransitionReason": "",
+            "InstanceId": "i-de787974",
+            "ImageId": "ami-c1740ab6",
+            "PrivateDnsName": "ip-10-5-10-71.eu-west-1.compute.internal",
+            "KeyName": "qwikLABS-L405-10674",
+            "SecurityGroups": [
+                {
+                    "GroupName": "qlstack2-labinstance-10674-30a87985-ccd2-4ac7-887a-69ecd288713c-CommandHostSecurityGroup-NJBF0WMG7F1V",
+                    "GroupId": "sg-6e212c0b"
+                }
+            ],
+            "ClientToken": "qlsta-Comma-1KX3L8GYTIBCL",
+            "SubnetId": "subnet-d7c6a2a0",
+            "InstanceType": "t2.medium",
+            "NetworkInterfaces": [
+                {
+                    "Status": "in-use",
+                    "MacAddress": "06:28:50:eb:2e:37",
+                    "SourceDestCheck": true,
+                    "VpcId": "vpc-6278fb07",
+                    "Description": "",
+                    "Association": {
+                        "PublicIp": "52.18.109.136",
+                        "PublicDnsName": "ec2-52-18-109-136.eu-west-1.compute.amazonaws.com",
+                        "IpOwnerId": "amazon"
+                    },
+                    "NetworkInterfaceId": "eni-00b85049",
+                    "PrivateIpAddresses": [
+                        {
+                            "PrivateDnsName": "ip-10-5-10-71.eu-west-1.compute.internal",
+                            "Association": {
+                                "PublicIp": "52.18.109.136",
+                                "PublicDnsName": "ec2-52-18-109-136.eu-west-1.compute.amazonaws.com",
+                                "IpOwnerId": "amazon"
+                            },
+                            "Primary": true,
+                            "PrivateIpAddress": "10.5.10.71"
+                        }
+                    ],
+                    "PrivateDnsName": "ip-10-5-10-71.eu-west-1.compute.internal",
+                    "Attachment": {
+                        "Status": "attached",
+                        "DeviceIndex": 0,
+                        "DeleteOnTermination": true,
+                        "AttachmentId": "eni-attach-2d3cae6f",
+                        "AttachTime": "2015-07-08T10:09:57.000Z"
+                    },
+                    "Groups": [
+                        {
+                            "GroupName": "qlstack2-labinstance-10674-30a87985-ccd2-4ac7-887a-69ecd288713c-CommandHostSecurityGroup-NJBF0WMG7F1V",
+                            "GroupId": "sg-6e212c0b"
+                        }
+                    ],
+                    "SubnetId": "subnet-d7c6a2a0",
+                    "OwnerId": "829339622987",
+                    "PrivateIpAddress": "10.5.10.71"
+                }
+            ],
+            "SourceDestCheck": true,
+            "Placement": {
+                "Tenancy": "default",
+                "GroupName": "",
+                "AvailabilityZone": "eu-west-1a"
+            },
+            "Hypervisor": "xen",
+            "BlockDeviceMappings": [
+                {
+                    "DeviceName": "/dev/sda1",
+                    "Ebs": {
+                        "Status": "attached",
+                        "DeleteOnTermination": true,
+                        "VolumeId": "vol-ad916f5d",
+                        "AttachTime": "2015-07-08T10:10:01.000Z"
+                    }
+                }
+            ],
+            "Architecture": "x86_64",
+            "RootDeviceType": "ebs",
+            "IamInstanceProfile": {
+                "Id": "AIPAJACOEJTNEBQTBB5OQ",
+                "Arn": "arn:aws:iam::829339622987:instance-profile/qlstack2-labinstance-10674-30a87985-ccd2-4ac7-887a-69ecd288713c-RootInstanceProfile-TG2A4DKLK4TZ"
+            },
+            "RootDeviceName": "/dev/sda1",
+            "VirtualizationType": "hvm",
+            "Tags": [
+                {
+                    "Value": "Command Host",
+                    "Key": "Name"
+                },
+                {
+                    "Value": "arn:aws:cloudformation:eu-west-1:829339622987:stack/qlstack2-labinstance-10674-30a87985-ccd2-4ac7-887a-69ecd288713c/20e90f90-2559-11e5-bee6
+-50e241b4d136",
+                    "Key": "aws:cloudformation:stack-id"
+                },
+                {
+                    "Value": "qa",
+                    "Key": "CustomerName"
+                },
+                {
+                    "Value": "CommandHost",
+                    "Key": "aws:cloudformation:logical-id"
+                },
+                {
+                    "Value": "qlstack2-labinstance-10674-30a87985-ccd2-4ac7-887a-69ecd288713c",
+                    "Key": "aws:cloudformation:stack-name"
+                },
+                {
+                    "Value": "405",
+                    "Key": "LabName"
+                }
+            ],
+            "AmiLaunchIndex": 0
+        }
+    ],
+    [
+        {
+            "Monitoring": {
+                "State": "disabled"
+            },
+            "PublicDnsName": "ec2-52-18-29-90.eu-west-1.compute.amazonaws.com",
+            "State": {
+                "Code": 16,
+                "Name": "running"
+            },
+            "EbsOptimized": false,
+            "LaunchTime": "2015-07-08T10:09:02.000Z",
+            "PublicIpAddress": "52.18.29.90",
+            "PrivateIpAddress": "10.5.10.79",
+            "ProductCodes": [],
+            "VpcId": "vpc-6278fb07",
+            "StateTransitionReason": "",
+            "InstanceId": "i-92797838",
+            "ImageId": "ami-6e7bd919",
+            "PrivateDnsName": "ip-10-5-10-79.eu-west-1.compute.internal",
+            "KeyName": "qwikLABS-L405-10674",
+            "SecurityGroups": [
+                {
+                    "GroupName": "qlstack2-labinstance-10674-30a87985-ccd2-4ac7-887a-69ecd288713c-NATSecurityGroup-1195MIZ5HO2NF",
+                    "GroupId": "sg-6d212c08"
+                }
+            ],
+            "ClientToken": "qlsta-NATIn-RMV84NWYJIXN",
+            "SubnetId": "subnet-d7c6a2a0",
+            "InstanceType": "t2.small",
+            "NetworkInterfaces": [
+                {
+                    "Status": "in-use",
+                    "MacAddress": "06:45:9b:d9:93:2f",
+                    "SourceDestCheck": false,
+                    "VpcId": "vpc-6278fb07",
+                    "Description": "",
+                    "Association": {
+                        "PublicIp": "52.18.29.90",
+                        "PublicDnsName": "ec2-52-18-29-90.eu-west-1.compute.amazonaws.com",
+                        "IpOwnerId": "amazon"
+                    },
+                    "NetworkInterfaceId": "eni-aca74fe5",
+                    "PrivateIpAddresses": [
+                        {
+                            "PrivateDnsName": "ip-10-5-10-79.eu-west-1.compute.internal",
+                            "Association": {
+                                "PublicIp": "52.18.29.90",
+                                "PublicDnsName": "ec2-52-18-29-90.eu-west-1.compute.amazonaws.com",
+                                "IpOwnerId": "amazon"
+                            },
+                            "Primary": true,
+                            "PrivateIpAddress": "10.5.10.79"
+                        }
+                    ],
+                    "PrivateDnsName": "ip-10-5-10-79.eu-west-1.compute.internal",
+                    "Attachment": {
+                        "Status": "attached",
+                        "DeviceIndex": 0,
+                        "DeleteOnTermination": true,
+                        "AttachmentId": "eni-attach-883fadca",
+                        "AttachTime": "2015-07-08T10:09:02.000Z"
+                    },
+                    "Groups": [
+                        {
+                            "GroupName": "qlstack2-labinstance-10674-30a87985-ccd2-4ac7-887a-69ecd288713c-NATSecurityGroup-1195MIZ5HO2NF",
+                            "GroupId": "sg-6d212c08"
+                        }
+                    ],
+                    "SubnetId": "subnet-d7c6a2a0",
+                    "OwnerId": "829339622987",
+                    "PrivateIpAddress": "10.5.10.79"
+                }
+            ],
+            "SourceDestCheck": false,
+            "Placement": {
+                "Tenancy": "default",
+                "GroupName": "",
+                "AvailabilityZone": "eu-west-1a"
+            },
+            "Hypervisor": "xen",
+            "BlockDeviceMappings": [
+                {
+                    "DeviceName": "/dev/xvda",
+                    "Ebs": {
+                        "Status": "attached",
+                        "DeleteOnTermination": true,
+                        "VolumeId": "vol-a1916f51",
+                        "AttachTime": "2015-07-08T10:09:05.000Z"
+                    }
+                }
+            ],
+            "Architecture": "x86_64",
+            "RootDeviceType": "ebs",
+            "RootDeviceName": "/dev/xvda",
+            "VirtualizationType": "hvm",
+            "Tags": [
+                {
+                    "Value": "qa",
+                    "Key": "CustomerName"
+                },
+                {
+                    "Value": "qlstack2-labinstance-10674-30a87985-ccd2-4ac7-887a-69ecd288713c",
+                    "Key": "aws:cloudformation:stack-name"
+                },
+                {
+                    "Value": "arn:aws:cloudformation:eu-west-1:829339622987:stack/qlstack2-labinstance-10674-30a87985-ccd2-4ac7-887a-69ecd288713c/20e90f90-2559-11e5-bee6
+-50e241b4d136",
+                    "Key": "aws:cloudformation:stack-id"
+                },
+                {
+                    "Value": "NATInstance",
+                    "Key": "aws:cloudformation:logical-id"
+                },
+                {
+                    "Value": "405",
+                    "Key": "LabName"
+                },
+                {
+                    "Value": "NAT",
+                    "Key": "Name"
+                }
+            ],
+            "AmiLaunchIndex": 0
+        }
+    ],
+    [
+        {
+            "Monitoring": {
+                "State": "disabled"
+            },
+            "PublicDnsName": "ec2-52-18-67-76.eu-west-1.compute.amazonaws.com",
+            "Platform": "windows",
+            "State": {
+                "Code": 16,
+                "Name": "running"
+            },
+            "EbsOptimized": false,
+            "LaunchTime": "2015-07-08T12:38:54.000Z",
+            "PublicIpAddress": "52.18.67.76",
+            "PrivateIpAddress": "10.5.10.23",
+            "ProductCodes": [],
+            "VpcId": "vpc-6278fb07",
+            "StateTransitionReason": "",
+            "InstanceId": "i-3138399b",
+            "ImageId": "ami-c1740ab6",
+            "PrivateDnsName": "ip-10-5-10-23.eu-west-1.compute.internal",
+            "KeyName": "qwikLABS-L405-10674",
+            "SecurityGroups": [
+                {
+                    "GroupName": "HTTP Access",
+                    "GroupId": "sg-a0c5c8c5"
+                }
+            ],
+            "ClientToken": "",
+            "SubnetId": "subnet-d7c6a2a0",
+            "InstanceType": "t2.micro",
+            "NetworkInterfaces": [
+                {
+                    "Status": "in-use",
+                    "MacAddress": "06:63:81:27:f0:97",
+                    "SourceDestCheck": true,
+                    "VpcId": "vpc-6278fb07",
+                    "Description": "",
+                    "Association": {
+                        "PublicIp": "52.18.67.76",
+                        "PublicDnsName": "ec2-52-18-67-76.eu-west-1.compute.amazonaws.com",
+                        "IpOwnerId": "amazon"
+                    },
+                    "NetworkInterfaceId": "eni-3dfa1274",
+                    "PrivateIpAddresses": [
+                        {
+                            "PrivateDnsName": "ip-10-5-10-23.eu-west-1.compute.internal",
+                            "Association": {
+                                "PublicIp": "52.18.67.76",
+                                "PublicDnsName": "ec2-52-18-67-76.eu-west-1.compute.amazonaws.com",
+                                "IpOwnerId": "amazon"
+                            },
+                            "Primary": true,
+                            "PrivateIpAddress": "10.5.10.23"
+                        }
+                    ],
+                    "PrivateDnsName": "ip-10-5-10-23.eu-west-1.compute.internal",
+                    "Attachment": {
+                        "Status": "attached",
+                        "DeviceIndex": 0,
+                        "DeleteOnTermination": true,
+                        "AttachmentId": "eni-attach-b3c25ff1",
+                        "AttachTime": "2015-07-08T12:38:54.000Z"
+                    },
+                    "Groups": [
+                        {
+                            "GroupName": "HTTP Access",
+                            "GroupId": "sg-a0c5c8c5"
+                        }
+                    ],
+                    "SubnetId": "subnet-d7c6a2a0",
+                    "OwnerId": "829339622987",
+                    "PrivateIpAddress": "10.5.10.23"
+                }
+            ],
+            "SourceDestCheck": true,
+            "Placement": {
+                "Tenancy": "default",
+                "GroupName": "",
+                "AvailabilityZone": "eu-west-1a"
+            },
+            "Hypervisor": "xen",
+            "BlockDeviceMappings": [
+                {
+                    "DeviceName": "/dev/sda1",
+                    "Ebs": {
+                        "Status": "attached",
+                        "DeleteOnTermination": true,
+                        "VolumeId": "vol-ffd42a0f",
+                        "AttachTime": "2015-07-08T12:38:57.000Z"
+                    }
+                }
+            ],
+            "Architecture": "x86_64",
+            "RootDeviceType": "ebs",
+            "RootDeviceName": "/dev/sda1",
+            "VirtualizationType": "hvm",
+            "AmiLaunchIndex": 0
+        }
+    ]
+]
+
+PS C:\Windows\system32> aws ec2 describe-instances --instance-id $instanceid --query 'Reservations[*].Instances[*].{InstanceId,SystemStatus.Status}'
+aws :
+At line:1 char:1
++ aws ec2 describe-instances --instance-id $instanceid --query 'Reservations[*].In ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+Bad value for --query Reservations[*].Instances[*].{InstanceId,SystemStatus.Status}: Expecting: colon, got: comma: Parse error at column 40, token "," (COMMA), for
+expression:
+"Reservations[*].Instances[*].{InstanceId,SystemStatus.Status}"
+                                         ^
+
+
+PS C:\Windows\system32> aws ec2 describe-instances --instance-id $instanceid --query 'Reservations[*].Instances[*].{[InstanceId,SystemStatus.Status]}'
+aws :
+At line:1 char:1
++ aws ec2 describe-instances --instance-id $instanceid --query 'Reservations[*].In ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+Bad value for --query Reservations[*].Instances[*].{[InstanceId,SystemStatus.Status]}: Expecting: ['quoted_identifier', 'unquoted_identifier'], got: lbracket: Parse
+error at column 30, token "[" (LBRACKET), for expression:
+"Reservations[*].Instances[*].{[InstanceId,SystemStatus.Status]}"
+                               ^
+
+
+PS C:\Windows\system32> aws ec2 describe-instances --instance-id $instanceid --query 'Reservations[*].Instances[*].{InstanceId,SystemStatus.Status}'
+aws :
+At line:1 char:1
++ aws ec2 describe-instances --instance-id $instanceid --query 'Reservations[*].In ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+Bad value for --query Reservations[*].Instances[*].{InstanceId,SystemStatus.Status}: Expecting: colon, got: comma: Parse error at column 40, token "," (COMMA), for
+expression:
+"Reservations[*].Instances[*].{InstanceId,SystemStatus.Status}"
+                                         ^
+
+
+PS C:\Windows\system32> aws ec2 describe-instances --instance-id $instanceid --query 'Reservations[*].Instances[*].{InstanceId}'
+aws :
+At line:1 char:1
++ aws ec2 describe-instances --instance-id $instanceid --query 'Reservations[*].In ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+Bad value for --query Reservations[*].Instances[*].{InstanceId}: Expecting: colon, got: rbrace: Parse error at column 40, token "}" (RBRACE), for expression:
+"Reservations[*].Instances[*].{InstanceId}"
+                                         ^
+
+
+PS C:\Windows\system32> aws ec2 describe-instances --instance-id $instanceid --query 'Reservations[*].Instances[*].InstanceId'
+[
+    [
+        "i-3138399b"
+    ]
+]
+
+PS C:\Windows\system32> aws ec2 describe-instances --instance-id $instanceid --query 'Reservations[*].Instances[*].{ID:InstanceId,AZ:Placement.AvailabilityZone}'
+[
+    [
+        {
+            "AZ": "eu-west-1a",
+            "ID": "i-3138399b"
+        }
+    ]
+]
+
+PS C:\Windows\system32> aws ec2 describe-instances --instance-id $instanceid --query 'Reservations[*].Instances[*].{InstanceId,Placement.AvailabilityZone}'
+aws :
+At line:1 char:1
++ aws ec2 describe-instances --instance-id $instanceid --query 'Reservations[*].In ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+Bad value for --query Reservations[*].Instances[*].{InstanceId,Placement.AvailabilityZone}: Expecting: colon, got: comma: Parse error at column 40, token "," (COMMA),
+for expression:
+"Reservations[*].Instances[*].{InstanceId,Placement.AvailabilityZone}"
+                                         ^
+
+
+PS C:\Windows\system32> aws ec2 describe-instances --instance-id $instanceid --query 'Reservations[0].Instances[0].NetworkInterfaces[0].Association.PublicDnsName'
+"ec2-52-18-67-76.eu-west-1.compute.amazonaws.com"
+
+                         CurrentMatchIndex                           ReplacementIndex                         ReplacementLength CompletionMatches
+                         -----------------                           ----------------                         ----------------- -----------------
+                                        -1                                       1412                                         7 {System.Management.Automation.Completi...
+
+
+
+                         CurrentMatchIndex                           ReplacementIndex                         ReplacementLength CompletionMatches
+                         -----------------                           ----------------                         ----------------- -----------------
+                                        -1                                       1435                                         0 {System.Management.Automation.Completi...
+
+
+
+                         CurrentMatchIndex                           ReplacementIndex                         ReplacementLength CompletionMatches
+                         -----------------                           ----------------                         ----------------- -----------------
+                                        -1                                       1435                                        55 {}
+
+
+
+                         CurrentMatchIndex                           ReplacementIndex                         ReplacementLength CompletionMatches
+                         -----------------                           ----------------                         ----------------- -----------------
+                                        -1                                       1435                                        56 {}
+
+
+
+PS C:\Windows\system32> Invoke-RestMethod -uri "http://ec2-52-18-67-76.eu-west-1.compute.amazonaws.com"
+>> TerminatingError(Invoke-RestMethod): "Unable to connect to the remote server"
+Invoke-RestMethod : Unable to connect to the remote server
+At line:1 char:1
++ Invoke-RestMethod -uri "http://ec2-52-18-67-76.eu-west-1.compute.amazonaws.com"
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (System.Net.HttpWebRequest:HttpWebRequest) [Invoke-RestMethod], WebException
+    + FullyQualifiedErrorId : WebCmdletWebResponseException,Microsoft.PowerShell.Commands.InvokeRestMethodCommand
+
+
+                         CurrentMatchIndex                           ReplacementIndex                         ReplacementLength CompletionMatches
+                         -----------------                           ----------------                         ----------------- -----------------
+                                        -1                                       1270                                         4 {}
+
+
+
+PS C:\Windows\system32> $publicdnsname = aws ec2 describe-instances --instance-id $instanceid --query 'Reservations[0].Instances[0].NetworkInterfaces[0].Association.PublicDnsName'
+
+                         CurrentMatchIndex                           ReplacementIndex                         ReplacementLength CompletionMatches
+                         -----------------                           ----------------                         ----------------- -----------------
+                                        -1                                       1427                                         1 {System.Management.Automation.Completi...
+
+
+
+PS C:\Windows\system32> $publicdnsname
+"ec2-52-18-67-76.eu-west-1.compute.amazonaws.com"
+
+                         CurrentMatchIndex                           ReplacementIndex                         ReplacementLength CompletionMatches
+                         -----------------                           ----------------                         ----------------- -----------------
+                                        -1                                       1442                                         0 {System.Management.Automation.Completi...
+
+
+
+                         CurrentMatchIndex                           ReplacementIndex                         ReplacementLength CompletionMatches
+                         -----------------                           ----------------                         ----------------- -----------------
+                                        -1                                       1444                                         1 {System.Management.Automation.Completi...
+
+
+
+PS C:\Windows\system32> $publicdnsname = $publicdnsname -replace '"',''
+
+PS C:\Windows\system32> $publicdnsname
+ec2-52-18-67-76.eu-west-1.compute.amazonaws.com
+
+                         CurrentMatchIndex                           ReplacementIndex                         ReplacementLength CompletionMatches
+                         -----------------                           ----------------                         ----------------- -----------------
+                                        -1                                       1565                                       421 {}
+
+
+
+PS C:\Windows\system32> (new-object net.webclient).DownloadString("http://$publicdnsname/stressapp/Default")
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>
+	Stress App
+</title></head>
+<body>
+
+<p style="align-content:center;">
+    <img src="images/AWS_Logo_Web_200px.png" />
+</p>
+
+
+
+
+
+    <form method="post" action="Default" id="form1">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="atikUINOrijD+aB8GDskqglUkCqundzgE4VWyYZIZnaXepqQ6vkkEssfbjOZuOgu/nIkD1qsJNQQgBsbPJrGlCeOmPS6DShCTOzjubnAY
+4qH87cBnPCSHahIn4oj94Vi" />
+
+<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="673E1B63" />
+<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="BtTEBgT/Ik8D74+YlmEs1EDGdyUMixERsKWd9D98QTcxTQ+2/N3igfSxwLhP8raNvhd3M1MEcQmJSsfFWqQjJQ/Y+5qSD
+Awi1DRQ9sJa3YeievkLDon3cpq7cJtiyMyXFLPPZ/UBHXAalenQL7Z9YQ==" />
+        <input type="submit" name="StartStressBtn" value="Start Stress" id="StartStressBtn" />
+        <input type="submit" name="EndStressBtn" value="End Stress" id="EndStressBtn" />
+    </form>
+</body>
+</html>
+
+
+PS C:\Windows\system32> aws ec2 create-image --name WebServer --instance-id $instanceid
+{
+    "ImageId": "ami-b6f9bbc1"
+}
+
+PS C:\Windows\system32> aws ec2 describe-instance-status --instance-id $instanceid
+{
+    "InstanceStatuses": [
+        {
+            "InstanceId": "i-3138399b",
+            "InstanceState": {
+                "Code": 16,
+                "Name": "running"
+            },
+            "AvailabilityZone": "eu-west-1a",
+            "SystemStatus": {
+                "Status": "ok",
+                "Details": [
+                    {
+                        "Status": "passed",
+                        "Name": "reachability"
+                    }
+                ]
+            },
+            "InstanceStatus": {
+                "Status": "ok",
+                "Details": [
+                    {
+                        "Status": "passed",
+                        "Name": "reachability"
+                    }
+                ]
+            }
+        }
+    ]
+}
+
+PS C:\Windows\system32> aws ec2 describe-instance-status --instance-id $instanceid
+{
+    "InstanceStatuses": [
+        {
+            "InstanceId": "i-3138399b",
+            "InstanceState": {
+                "Code": 16,
+                "Name": "running"
+            },
+            "AvailabilityZone": "eu-west-1a",
+            "SystemStatus": {
+                "Status": "ok",
+                "Details": [
+                    {
+                        "Status": "passed",
+                        "Name": "reachability"
+                    }
+                ]
+            },
+            "InstanceStatus": {
+                "Status": "ok",
+                "Details": [
+                    {
+                        "Status": "passed",
+                        "Name": "reachability"
+                    }
+                ]
+            }
+        }
+    ]
+}
+
+PS C:\Windows\system32> aws ec2 describe-instance-status --instance-id $instanceid
+{
+    "InstanceStatuses": [
+        {
+            "InstanceId": "i-3138399b",
+            "InstanceState": {
+                "Code": 16,
+                "Name": "running"
+            },
+            "AvailabilityZone": "eu-west-1a",
+            "SystemStatus": {
+                "Status": "ok",
+                "Details": [
+                    {
+                        "Status": "passed",
+                        "Name": "reachability"
+                    }
+                ]
+            },
+            "InstanceStatus": {
+                "Status": "ok",
+                "Details": [
+                    {
+                        "Status": "passed",
+                        "Name": "reachability"
+                    }
+                ]
+            }
+        }
+    ]
+}
+
+PS C:\Windows\system32> aws ec2 describe-instance-status --instance-id $instanceid
+{
+    "InstanceStatuses": [
+        {
+            "InstanceId": "i-3138399b",
+            "InstanceState": {
+                "Code": 16,
+                "Name": "running"
+            },
+            "AvailabilityZone": "eu-west-1a",
+            "SystemStatus": {
+                "Status": "ok",
+                "Details": [
+                    {
+                        "Status": "passed",
+                        "Name": "reachability"
+                    }
+                ]
+            },
+            "InstanceStatus": {
+                "Status": "ok",
+                "Details": [
+                    {
+                        "Status": "passed",
+                        "Name": "reachability"
+                    }
+                ]
+            }
+        }
+    ]
+}
+
+PS C:\Windows\system32> aws ec2 describe-instance-status --instance-id $instanceid
+{
+    "InstanceStatuses": [
+        {
+            "InstanceId": "i-3138399b",
+            "InstanceState": {
+                "Code": 16,
+                "Name": "running"
+            },
+            "AvailabilityZone": "eu-west-1a",
+            "SystemStatus": {
+                "Status": "ok",
+                "Details": [
+                    {
+                        "Status": "passed",
+                        "Name": "reachability"
+                    }
+                ]
+            },
+            "InstanceStatus": {
+                "Status": "ok",
+                "Details": [
+                    {
+                        "Status": "passed",
+                        "Name": "reachability"
+                    }
+                ]
+            }
+        }
+    ]
+}
+
+                         CurrentMatchIndex                           ReplacementIndex                         ReplacementLength CompletionMatches
+                         -----------------                           ----------------                         ----------------- -----------------
+                                        -1                                       1995                                         1 {System.Management.Automation.Completi...
+
+
+
+                         CurrentMatchIndex                           ReplacementIndex                         ReplacementLength CompletionMatches
+                         -----------------                           ----------------                         ----------------- -----------------
+                                        -1                                       1995                                         1 {System.Management.Automation.Completi...
+
+
