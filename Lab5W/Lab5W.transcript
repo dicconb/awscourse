@@ -8,3 +8,1461 @@ Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell_ise.exe
 Process ID: 736
 **********************
 Transcript started, output file is C:\Users\Administrator\gitrepos\awscourse\Lab5W\Lab5W.transcript
+
+PS C:\Windows\system32> aws ec2 describe-instances --filter "Name=tag:Project,Values=ERPSystem"
+{
+    "Reservations": [
+        {
+            "OwnerId": "696974783300",
+            "ReservationId": "r-056138e3",
+            "Groups": [],
+            "Instances": [
+                {
+                    "Monitoring": {
+                        "State": "disabled"
+                    },
+                    "PublicDnsName": "",
+                    "State": {
+                        "Code": 16,
+                        "Name": "running"
+                    },
+                    "EbsOptimized": false,
+                    "LaunchTime": "2015-07-08T07:20:47.000Z",
+                    "PrivateIpAddress": "10.5.1.170",
+                    "ProductCodes": [],
+                    "VpcId": "vpc-b668ebd3",
+                    "StateTransitionReason": "",
+                    "InstanceId": "i-48df0ae5",
+                    "ImageId": "ami-6e7bd919",
+                    "PrivateDnsName": "ip-10-5-1-170.eu-west-1.compute.internal",
+                    "KeyName": "qwikLABS-L403-10660",
+                    "SecurityGroups": [
+                        {
+                            "GroupName": "default",
+                            "GroupId": "sg-93070af6"
+                        }
+                    ],
+                    "ClientToken": "qlsta-Insta-13BLKI0PO9M2A",
+                    "SubnetId": "subnet-4b1ba512",
+                    "InstanceType": "t2.micro",
+                    "NetworkInterfaces": [
+                        {
+                            "Status": "in-use",
+                            "MacAddress": "0a:54:3d:7e:cd:e9",
+                            "SourceDestCheck": true,
+                            "VpcId": "vpc-b668ebd3",
+                            "Description": "",
+                            "NetworkInterfaceId": "eni-540e2c0c",
+                            "PrivateIpAddresses": [
+                                {
+                                    "PrivateDnsName": "ip-10-5-1-170.eu-west-1.compute.internal",
+                                    "Primary": true,
+                                    "PrivateIpAddress": "10.5.1.170"
+                                }
+                            ],
+                            "PrivateDnsName": "ip-10-5-1-170.eu-west-1.compute.internal",
+                            "Attachment": {
+                                "Status": "attached",
+                                "DeviceIndex": 0,
+                                "DeleteOnTermination": true,
+                                "AttachmentId": "eni-attach-199e8e5b",
+                                "AttachTime": "2015-07-08T07:20:47.000Z"
+                            },
+                            "Groups": [
+                                {
+                                    "GroupName": "default",
+                                    "GroupId": "sg-93070af6"
+                                }
+                            ],
+                            "SubnetId": "subnet-4b1ba512",
+                            "OwnerId": "696974783300",
+                            "PrivateIpAddress": "10.5.1.170"
+                        }
+                    ],
+                    "SourceDestCheck": true,
+                    "Placement": {
+                        "Tenancy": "default",
+                        "GroupName": "",
+                        "AvailabilityZone": "eu-west-1a"
+                    },
+                    "Hypervisor": "xen",
+                    "BlockDeviceMappings": [
+                        {
+                            "DeviceName": "/dev/xvda",
+                            "Ebs": {
+                                "Status": "attached",
+                                "DeleteOnTermination": true,
+                                "VolumeId": "vol-cda2c5d2",
+                                "AttachTime": "2015-07-08T07:20:50.000Z"
+                            }
+                        }
+                    ],
+                    "Architecture": "x86_64",
+                    "RootDeviceType": "ebs",
+                    "RootDeviceName": "/dev/xvda",
+                    "VirtualizationType": "hvm",
+                    "Tags": [
+                        {
+                            "Value": "HR",
+                            "Key": "Department"
+                        },
+                        {
+                            "Value": "ERPSystem",
+                            "Key": "Project"
+                        },
+                        {
+                            "Value": "app server",
+                            "Key": "Name"
+                        },
+                        {
+                            "Value": "portal",
+                            "Key": "Application"
+                        },
+                        {
+                            "Value": "1.0",
+                            "Key": "Version"
+                        },
+                        {
+                            "Value": "qa",
+                            "Key": "CustomerName"
+                        },
+                        {
+                            "Value": "Instance5",
+                            "Key": "aws:cloudformation:logical-id"
+                        },
+                        {
+                            "Value": "qlstack2-labinstance-10660-aff32c3e-fbfe-4ffd-a987-5d7a4b867ba2",
+                            "Key": "aws:cloudformation:stack-name"
+                        },
+                        {
+                            "Value": "403",
+                            "Key": "LabName"
+                        },
+                        {
+                            "Value": "arn:aws:cloudformation:eu-west-1:696974783300:stack/qlstack2-labinstance-10660-aff32c3
+e-fbfe-4ffd-a987-5d7a4b867ba2/9cca6540-2541-11e5-b79b-5001411350b4",
+                            "Key": "aws:cloudformation:stack-id"
+                        },
+                        {
+                            "Value": "staging",
+                            "Key": "Environment"
+                        }
+                    ],
+                    "AmiLaunchIndex": 0
+                }
+            ]
+        },
+        {
+            "OwnerId": "696974783300",
+            "ReservationId": "r-5f633ab9",
+            "Groups": [],
+            "Instances": [
+                {
+                    "Monitoring": {
+                        "State": "disabled"
+                    },
+                    "PublicDnsName": "",
+                    "State": {
+                        "Code": 16,
+                        "Name": "running"
+                    },
+                    "EbsOptimized": false,
+                    "LaunchTime": "2015-07-08T07:20:47.000Z",
+                    "PrivateIpAddress": "10.5.1.225",
+                    "ProductCodes": [],
+                    "VpcId": "vpc-b668ebd3",
+                    "StateTransitionReason": "",
+                    "InstanceId": "i-fcdf0a51",
+                    "ImageId": "ami-6e7bd919",
+                    "PrivateDnsName": "ip-10-5-1-225.eu-west-1.compute.internal",
+                    "KeyName": "qwikLABS-L403-10660",
+                    "SecurityGroups": [
+                        {
+                            "GroupName": "default",
+                            "GroupId": "sg-93070af6"
+                        }
+                    ],
+                    "ClientToken": "qlsta-Insta-1MGAK17BLKO4U",
+                    "SubnetId": "subnet-4b1ba512",
+                    "InstanceType": "t2.micro",
+                    "NetworkInterfaces": [
+                        {
+                            "Status": "in-use",
+                            "MacAddress": "0a:8d:cd:26:f3:2b",
+                            "SourceDestCheck": true,
+                            "VpcId": "vpc-b668ebd3",
+                            "Description": "",
+                            "NetworkInterfaceId": "eni-5f0e2c07",
+                            "PrivateIpAddresses": [
+                                {
+                                    "PrivateDnsName": "ip-10-5-1-225.eu-west-1.compute.internal",
+                                    "Primary": true,
+                                    "PrivateIpAddress": "10.5.1.225"
+                                }
+                            ],
+                            "PrivateDnsName": "ip-10-5-1-225.eu-west-1.compute.internal",
+                            "Attachment": {
+                                "Status": "attached",
+                                "DeviceIndex": 0,
+                                "DeleteOnTermination": true,
+                                "AttachmentId": "eni-attach-009e8e42",
+                                "AttachTime": "2015-07-08T07:20:47.000Z"
+                            },
+                            "Groups": [
+                                {
+                                    "GroupName": "default",
+                                    "GroupId": "sg-93070af6"
+                                }
+                            ],
+                            "SubnetId": "subnet-4b1ba512",
+                            "OwnerId": "696974783300",
+                            "PrivateIpAddress": "10.5.1.225"
+                        }
+                    ],
+                    "SourceDestCheck": true,
+                    "Placement": {
+                        "Tenancy": "default",
+                        "GroupName": "",
+                        "AvailabilityZone": "eu-west-1a"
+                    },
+                    "Hypervisor": "xen",
+                    "BlockDeviceMappings": [
+                        {
+                            "DeviceName": "/dev/xvda",
+                            "Ebs": {
+                                "Status": "attached",
+                                "DeleteOnTermination": true,
+                                "VolumeId": "vol-f7a2c5e8",
+                                "AttachTime": "2015-07-08T07:20:50.000Z"
+                            }
+                        }
+                    ],
+                    "Architecture": "x86_64",
+                    "RootDeviceType": "ebs",
+                    "RootDeviceName": "/dev/xvda",
+                    "VirtualizationType": "hvm",
+                    "Tags": [
+                        {
+                            "Value": "Instance1",
+                            "Key": "aws:cloudformation:logical-id"
+                        },
+                        {
+                            "Value": "web server",
+                            "Key": "Name"
+                        },
+                        {
+                            "Value": "portal",
+                            "Key": "Application"
+                        },
+                        {
+                            "Value": "HR",
+                            "Key": "Department"
+                        },
+                        {
+                            "Value": "arn:aws:cloudformation:eu-west-1:696974783300:stack/qlstack2-labinstance-10660-aff32c3
+e-fbfe-4ffd-a987-5d7a4b867ba2/9cca6540-2541-11e5-b79b-5001411350b4",
+                            "Key": "aws:cloudformation:stack-id"
+                        },
+                        {
+                            "Value": "qa",
+                            "Key": "CustomerName"
+                        },
+                        {
+                            "Value": "qlstack2-labinstance-10660-aff32c3e-fbfe-4ffd-a987-5d7a4b867ba2",
+                            "Key": "aws:cloudformation:stack-name"
+                        },
+                        {
+                            "Value": "1.0",
+                            "Key": "Version"
+                        },
+                        {
+                            "Value": "403",
+                            "Key": "LabName"
+                        },
+                        {
+                            "Value": "ERPSystem",
+                            "Key": "Project"
+                        },
+                        {
+                            "Value": "development",
+                            "Key": "Environment"
+                        }
+                    ],
+                    "AmiLaunchIndex": 0
+                }
+            ]
+        },
+        {
+            "OwnerId": "696974783300",
+            "ReservationId": "r-1a6039fc",
+            "Groups": [],
+            "Instances": [
+                {
+                    "Monitoring": {
+                        "State": "disabled"
+                    },
+                    "PublicDnsName": "",
+                    "State": {
+                        "Code": 16,
+                        "Name": "running"
+                    },
+                    "EbsOptimized": false,
+                    "LaunchTime": "2015-07-08T07:20:47.000Z",
+                    "PrivateIpAddress": "10.5.1.171",
+                    "ProductCodes": [],
+                    "VpcId": "vpc-b668ebd3",
+                    "StateTransitionReason": "",
+                    "InstanceId": "i-d0df0a7d",
+                    "ImageId": "ami-6e7bd919",
+                    "PrivateDnsName": "ip-10-5-1-171.eu-west-1.compute.internal",
+                    "KeyName": "qwikLABS-L403-10660",
+                    "SecurityGroups": [
+                        {
+                            "GroupName": "qlstack2-labinstance-10660-aff32c3e-fbfe-4ffd-a987-5d7a4b867ba2-WideOpenSecurityGr
+oup-1QT6XT8BIGW4K",
+                            "GroupId": "sg-40060b25"
+                        }
+                    ],
+                    "ClientToken": "qlsta-Insta-1ZWJZ34Z52Z6",
+                    "SubnetId": "subnet-4b1ba512",
+                    "InstanceType": "t2.micro",
+                    "NetworkInterfaces": [
+                        {
+                            "Status": "in-use",
+                            "MacAddress": "0a:4a:8e:12:d4:ff",
+                            "SourceDestCheck": true,
+                            "VpcId": "vpc-b668ebd3",
+                            "Description": "",
+                            "NetworkInterfaceId": "eni-5d0e2c05",
+                            "PrivateIpAddresses": [
+                                {
+                                    "PrivateDnsName": "ip-10-5-1-171.eu-west-1.compute.internal",
+                                    "Primary": true,
+                                    "PrivateIpAddress": "10.5.1.171"
+                                }
+                            ],
+                            "PrivateDnsName": "ip-10-5-1-171.eu-west-1.compute.internal",
+                            "Attachment": {
+                                "Status": "attached",
+                                "DeviceIndex": 0,
+                                "DeleteOnTermination": true,
+                                "AttachmentId": "eni-attach-769e8e34",
+                                "AttachTime": "2015-07-08T07:20:47.000Z"
+                            },
+                            "Groups": [
+                                {
+                                    "GroupName": "qlstack2-labinstance-10660-aff32c3e-fbfe-4ffd-a987-5d7a4b867ba2-WideOpenSe
+curityGroup-1QT6XT8BIGW4K",
+                                    "GroupId": "sg-40060b25"
+                                }
+                            ],
+                            "SubnetId": "subnet-4b1ba512",
+                            "OwnerId": "696974783300",
+                            "PrivateIpAddress": "10.5.1.171"
+                        }
+                    ],
+                    "SourceDestCheck": true,
+                    "Placement": {
+                        "Tenancy": "default",
+                        "GroupName": "",
+                        "AvailabilityZone": "eu-west-1a"
+                    },
+                    "Hypervisor": "xen",
+                    "BlockDeviceMappings": [
+                        {
+                            "DeviceName": "/dev/xvda",
+                            "Ebs": {
+                                "Status": "attached",
+                                "DeleteOnTermination": true,
+                                "VolumeId": "vol-dda2c5c2",
+                                "AttachTime": "2015-07-08T07:20:50.000Z"
+                            }
+                        }
+                    ],
+                    "Architecture": "x86_64",
+                    "RootDeviceType": "ebs",
+                    "RootDeviceName": "/dev/xvda",
+                    "VirtualizationType": "hvm",
+                    "Tags": [
+                        {
+                            "Value": "portal",
+                            "Key": "Application"
+                        },
+                        {
+                            "Value": "Instance2",
+                            "Key": "aws:cloudformation:logical-id"
+                        },
+                        {
+                            "Value": "1.0",
+                            "Key": "Version"
+                        },
+                        {
+                            "Value": "arn:aws:cloudformation:eu-west-1:696974783300:stack/qlstack2-labinstance-10660-aff32c3
+e-fbfe-4ffd-a987-5d7a4b867ba2/9cca6540-2541-11e5-b79b-5001411350b4",
+                            "Key": "aws:cloudformation:stack-id"
+                        },
+                        {
+                            "Value": "403",
+                            "Key": "LabName"
+                        },
+                        {
+                            "Value": "qa",
+                            "Key": "CustomerName"
+                        },
+                        {
+                            "Value": "development",
+                            "Key": "Environment"
+                        },
+                        {
+                            "Value": "app server",
+                            "Key": "Name"
+                        },
+                        {
+                            "Value": "ERPSystem",
+                            "Key": "Project"
+                        },
+                        {
+                            "Value": "qlstack2-labinstance-10660-aff32c3e-fbfe-4ffd-a987-5d7a4b867ba2",
+                            "Key": "aws:cloudformation:stack-name"
+                        },
+                        {
+                            "Value": "HR",
+                            "Key": "Department"
+                        }
+                    ],
+                    "AmiLaunchIndex": 0
+                }
+            ]
+        },
+        {
+            "OwnerId": "696974783300",
+            "ReservationId": "r-92603974",
+            "Groups": [],
+            "Instances": [
+                {
+                    "Monitoring": {
+                        "State": "disabled"
+                    },
+                    "PublicDnsName": "",
+                    "State": {
+                        "Code": 16,
+                        "Name": "running"
+                    },
+                    "EbsOptimized": false,
+                    "LaunchTime": "2015-07-08T07:20:47.000Z",
+                    "PrivateIpAddress": "10.5.1.212",
+                    "ProductCodes": [],
+                    "VpcId": "vpc-b668ebd3",
+                    "StateTransitionReason": "",
+                    "InstanceId": "i-e3de0b4e",
+                    "ImageId": "ami-6e7bd919",
+                    "PrivateDnsName": "ip-10-5-1-212.eu-west-1.compute.internal",
+                    "KeyName": "qwikLABS-L403-10660",
+                    "SecurityGroups": [
+                        {
+                            "GroupName": "default",
+                            "GroupId": "sg-93070af6"
+                        }
+                    ],
+                    "ClientToken": "qlsta-Insta-1MCKTDVXKKRW0",
+                    "SubnetId": "subnet-4b1ba512",
+                    "InstanceType": "t2.micro",
+                    "NetworkInterfaces": [
+                        {
+                            "Status": "in-use",
+                            "MacAddress": "0a:d0:8f:55:8f:71",
+                            "SourceDestCheck": true,
+                            "VpcId": "vpc-b668ebd3",
+                            "Description": "",
+                            "NetworkInterfaceId": "eni-500e2c08",
+                            "PrivateIpAddresses": [
+                                {
+                                    "PrivateDnsName": "ip-10-5-1-212.eu-west-1.compute.internal",
+                                    "Primary": true,
+                                    "PrivateIpAddress": "10.5.1.212"
+                                }
+                            ],
+                            "PrivateDnsName": "ip-10-5-1-212.eu-west-1.compute.internal",
+                            "Attachment": {
+                                "Status": "attached",
+                                "DeviceIndex": 0,
+                                "DeleteOnTermination": true,
+                                "AttachmentId": "eni-attach-ba9d8df8",
+                                "AttachTime": "2015-07-08T07:20:47.000Z"
+                            },
+                            "Groups": [
+                                {
+                                    "GroupName": "default",
+                                    "GroupId": "sg-93070af6"
+                                }
+                            ],
+                            "SubnetId": "subnet-4b1ba512",
+                            "OwnerId": "696974783300",
+                            "PrivateIpAddress": "10.5.1.212"
+                        }
+                    ],
+                    "SourceDestCheck": true,
+                    "Placement": {
+                        "Tenancy": "default",
+                        "GroupName": "",
+                        "AvailabilityZone": "eu-west-1a"
+                    },
+                    "Hypervisor": "xen",
+                    "BlockDeviceMappings": [
+                        {
+                            "DeviceName": "/dev/xvda",
+                            "Ebs": {
+                                "Status": "attached",
+                                "DeleteOnTermination": true,
+                                "VolumeId": "vol-8fa2c590",
+                                "AttachTime": "2015-07-08T07:20:50.000Z"
+                            }
+                        }
+                    ],
+                    "Architecture": "x86_64",
+                    "RootDeviceType": "ebs",
+                    "RootDeviceName": "/dev/xvda",
+                    "VirtualizationType": "hvm",
+                    "Tags": [
+                        {
+                            "Value": "Instance4",
+                            "Key": "aws:cloudformation:logical-id"
+                        },
+                        {
+                            "Value": "HR",
+                            "Key": "Department"
+                        },
+                        {
+                            "Value": "1.0",
+                            "Key": "Version"
+                        },
+                        {
+                            "Value": "ERPSystem",
+                            "Key": "Project"
+                        },
+                        {
+                            "Value": "web server",
+                            "Key": "Name"
+                        },
+                        {
+                            "Value": "staging",
+                            "Key": "Environment"
+                        },
+                        {
+                            "Value": "portal",
+                            "Key": "Application"
+                        },
+                        {
+                            "Value": "qa",
+                            "Key": "CustomerName"
+                        },
+                        {
+                            "Value": "arn:aws:cloudformation:eu-west-1:696974783300:stack/qlstack2-labinstance-10660-aff32c3
+e-fbfe-4ffd-a987-5d7a4b867ba2/9cca6540-2541-11e5-b79b-5001411350b4",
+                            "Key": "aws:cloudformation:stack-id"
+                        },
+                        {
+                            "Value": "403",
+                            "Key": "LabName"
+                        },
+                        {
+                            "Value": "qlstack2-labinstance-10660-aff32c3e-fbfe-4ffd-a987-5d7a4b867ba2",
+                            "Key": "aws:cloudformation:stack-name"
+                        }
+                    ],
+                    "AmiLaunchIndex": 0
+                }
+            ]
+        },
+        {
+            "OwnerId": "696974783300",
+            "ReservationId": "r-d9633a3f",
+            "Groups": [],
+            "Instances": [
+                {
+                    "Monitoring": {
+                        "State": "disabled"
+                    },
+                    "PublicDnsName": "",
+                    "State": {
+                        "Code": 16,
+                        "Name": "running"
+                    },
+                    "EbsOptimized": false,
+                    "LaunchTime": "2015-07-08T07:20:48.000Z",
+                    "PrivateIpAddress": "10.5.1.153",
+                    "ProductCodes": [],
+                    "VpcId": "vpc-b668ebd3",
+                    "StateTransitionReason": "",
+                    "InstanceId": "i-27de0b8a",
+                    "ImageId": "ami-6e7bd919",
+                    "PrivateDnsName": "ip-10-5-1-153.eu-west-1.compute.internal",
+                    "KeyName": "qwikLABS-L403-10660",
+                    "SecurityGroups": [
+                        {
+                            "GroupName": "default",
+                            "GroupId": "sg-93070af6"
+                        }
+                    ],
+                    "ClientToken": "qlsta-Insta-ZZIR6Q7RGIX0",
+                    "SubnetId": "subnet-4b1ba512",
+                    "InstanceType": "t2.micro",
+                    "NetworkInterfaces": [
+                        {
+                            "Status": "in-use",
+                            "MacAddress": "0a:c0:b9:d1:4b:97",
+                            "SourceDestCheck": true,
+                            "VpcId": "vpc-b668ebd3",
+                            "Description": "",
+                            "NetworkInterfaceId": "eni-570e2c0f",
+                            "PrivateIpAddresses": [
+                                {
+                                    "PrivateDnsName": "ip-10-5-1-153.eu-west-1.compute.internal",
+                                    "Primary": true,
+                                    "PrivateIpAddress": "10.5.1.153"
+                                }
+                            ],
+                            "PrivateDnsName": "ip-10-5-1-153.eu-west-1.compute.internal",
+                            "Attachment": {
+                                "Status": "attached",
+                                "DeviceIndex": 0,
+                                "DeleteOnTermination": true,
+                                "AttachmentId": "eni-attach-489e8e0a",
+                                "AttachTime": "2015-07-08T07:20:48.000Z"
+                            },
+                            "Groups": [
+                                {
+                                    "GroupName": "default",
+                                    "GroupId": "sg-93070af6"
+                                }
+                            ],
+                            "SubnetId": "subnet-4b1ba512",
+                            "OwnerId": "696974783300",
+                            "PrivateIpAddress": "10.5.1.153"
+                        }
+                    ],
+                    "SourceDestCheck": true,
+                    "Placement": {
+                        "Tenancy": "default",
+                        "GroupName": "",
+                        "AvailabilityZone": "eu-west-1a"
+                    },
+                    "Hypervisor": "xen",
+                    "BlockDeviceMappings": [
+                        {
+                            "DeviceName": "/dev/xvda",
+                            "Ebs": {
+                                "Status": "attached",
+                                "DeleteOnTermination": true,
+                                "VolumeId": "vol-2ea1c631",
+                                "AttachTime": "2015-07-08T07:20:51.000Z"
+                            }
+                        }
+                    ],
+                    "Architecture": "x86_64",
+                    "RootDeviceType": "ebs",
+                    "RootDeviceName": "/dev/xvda",
+                    "VirtualizationType": "hvm",
+                    "Tags": [
+                        {
+                            "Value": "arn:aws:cloudformation:eu-west-1:696974783300:stack/qlstack2-labinstance-10660-aff32c3
+e-fbfe-4ffd-a987-5d7a4b867ba2/9cca6540-2541-11e5-b79b-5001411350b4",
+                            "Key": "aws:cloudformation:stack-id"
+                        },
+                        {
+                            "Value": "Instance6",
+                            "Key": "aws:cloudformation:logical-id"
+                        },
+                        {
+                            "Value": "portal",
+                            "Key": "Application"
+                        },
+                        {
+                            "Value": "403",
+                            "Key": "LabName"
+                        },
+                        {
+                            "Value": "web server",
+                            "Key": "Name"
+                        },
+                        {
+                            "Value": "1.0",
+                            "Key": "Version"
+                        },
+                        {
+                            "Value": "ERPSystem",
+                            "Key": "Project"
+                        },
+                        {
+                            "Value": "qa",
+                            "Key": "CustomerName"
+                        },
+                        {
+                            "Value": "qlstack2-labinstance-10660-aff32c3e-fbfe-4ffd-a987-5d7a4b867ba2",
+                            "Key": "aws:cloudformation:stack-name"
+                        },
+                        {
+                            "Value": "HR",
+                            "Key": "Department"
+                        },
+                        {
+                            "Value": "production",
+                            "Key": "Environment"
+                        }
+                    ],
+                    "AmiLaunchIndex": 0
+                }
+            ]
+        },
+        {
+            "OwnerId": "696974783300",
+            "ReservationId": "r-93603975",
+            "Groups": [],
+            "Instances": [
+                {
+                    "Monitoring": {
+                        "State": "disabled"
+                    },
+                    "PublicDnsName": "",
+                    "State": {
+                        "Code": 16,
+                        "Name": "running"
+                    },
+                    "EbsOptimized": false,
+                    "LaunchTime": "2015-07-08T07:20:47.000Z",
+                    "PrivateIpAddress": "10.5.1.183",
+                    "ProductCodes": [],
+                    "VpcId": "vpc-b668ebd3",
+                    "StateTransitionReason": "",
+                    "InstanceId": "i-e0de0b4d",
+                    "ImageId": "ami-6e7bd919",
+                    "PrivateDnsName": "ip-10-5-1-183.eu-west-1.compute.internal",
+                    "KeyName": "qwikLABS-L403-10660",
+                    "SecurityGroups": [
+                        {
+                            "GroupName": "default",
+                            "GroupId": "sg-93070af6"
+                        }
+                    ],
+                    "ClientToken": "qlsta-Insta-OCABSDFF167C",
+                    "SubnetId": "subnet-4b1ba512",
+                    "InstanceType": "t2.micro",
+                    "NetworkInterfaces": [
+                        {
+                            "Status": "in-use",
+                            "MacAddress": "0a:84:f9:6f:d2:b5",
+                            "SourceDestCheck": true,
+                            "VpcId": "vpc-b668ebd3",
+                            "Description": "",
+                            "NetworkInterfaceId": "eni-510e2c09",
+                            "PrivateIpAddresses": [
+                                {
+                                    "PrivateDnsName": "ip-10-5-1-183.eu-west-1.compute.internal",
+                                    "Primary": true,
+                                    "PrivateIpAddress": "10.5.1.183"
+                                }
+                            ],
+                            "PrivateDnsName": "ip-10-5-1-183.eu-west-1.compute.internal",
+                            "Attachment": {
+                                "Status": "attached",
+                                "DeviceIndex": 0,
+                                "DeleteOnTermination": true,
+                                "AttachmentId": "eni-attach-bb9d8df9",
+                                "AttachTime": "2015-07-08T07:20:47.000Z"
+                            },
+                            "Groups": [
+                                {
+                                    "GroupName": "default",
+                                    "GroupId": "sg-93070af6"
+                                }
+                            ],
+                            "SubnetId": "subnet-4b1ba512",
+                            "OwnerId": "696974783300",
+                            "PrivateIpAddress": "10.5.1.183"
+                        }
+                    ],
+                    "SourceDestCheck": true,
+                    "Placement": {
+                        "Tenancy": "default",
+                        "GroupName": "",
+                        "AvailabilityZone": "eu-west-1a"
+                    },
+                    "Hypervisor": "xen",
+                    "BlockDeviceMappings": [
+                        {
+                            "DeviceName": "/dev/xvda",
+                            "Ebs": {
+                                "Status": "attached",
+                                "DeleteOnTermination": true,
+                                "VolumeId": "vol-bfa2c5a0",
+                                "AttachTime": "2015-07-08T07:20:51.000Z"
+                            }
+                        }
+                    ],
+                    "Architecture": "x86_64",
+                    "RootDeviceType": "ebs",
+                    "RootDeviceName": "/dev/xvda",
+                    "VirtualizationType": "hvm",
+                    "Tags": [
+                        {
+                            "Value": "ERPSystem",
+                            "Key": "Project"
+                        },
+                        {
+                            "Value": "HR",
+                            "Key": "Department"
+                        },
+                        {
+                            "Value": "Instance8",
+                            "Key": "aws:cloudformation:logical-id"
+                        },
+                        {
+                            "Value": "arn:aws:cloudformation:eu-west-1:696974783300:stack/qlstack2-labinstance-10660-aff32c3
+e-fbfe-4ffd-a987-5d7a4b867ba2/9cca6540-2541-11e5-b79b-5001411350b4",
+                            "Key": "aws:cloudformation:stack-id"
+                        },
+                        {
+                            "Value": "production",
+                            "Key": "Environment"
+                        },
+                        {
+                            "Value": "qa",
+                            "Key": "CustomerName"
+                        },
+                        {
+                            "Value": "qlstack2-labinstance-10660-aff32c3e-fbfe-4ffd-a987-5d7a4b867ba2",
+                            "Key": "aws:cloudformation:stack-name"
+                        },
+                        {
+                            "Value": "1.0",
+                            "Key": "Version"
+                        },
+                        {
+                            "Value": "portal",
+                            "Key": "Application"
+                        },
+                        {
+                            "Value": "403",
+                            "Key": "LabName"
+                        },
+                        {
+                            "Value": "app server",
+                            "Key": "Name"
+                        }
+                    ],
+                    "AmiLaunchIndex": 0
+                }
+            ]
+        },
+        {
+            "OwnerId": "696974783300",
+            "ReservationId": "r-40633aa6",
+            "Groups": [],
+            "Instances": [
+                {
+                    "Monitoring": {
+                        "State": "disabled"
+                    },
+                    "PublicDnsName": "",
+                    "State": {
+                        "Code": 16,
+                        "Name": "running"
+                    },
+                    "EbsOptimized": false,
+                    "LaunchTime": "2015-07-08T07:20:50.000Z",
+                    "PrivateIpAddress": "10.5.1.139",
+                    "ProductCodes": [],
+                    "VpcId": "vpc-b668ebd3",
+                    "StateTransitionReason": "",
+                    "InstanceId": "i-fedf0a53",
+                    "ImageId": "ami-6e7bd919",
+                    "PrivateDnsName": "ip-10-5-1-139.eu-west-1.compute.internal",
+                    "KeyName": "qwikLABS-L403-10660",
+                    "SecurityGroups": [
+                        {
+                            "GroupName": "default",
+                            "GroupId": "sg-93070af6"
+                        }
+                    ],
+                    "ClientToken": "qlsta-Insta-12GTEST9J45SN",
+                    "SubnetId": "subnet-4b1ba512",
+                    "InstanceType": "t2.micro",
+                    "NetworkInterfaces": [
+                        {
+                            "Status": "in-use",
+                            "MacAddress": "0a:8f:89:71:2f:4d",
+                            "SourceDestCheck": true,
+                            "VpcId": "vpc-b668ebd3",
+                            "Description": "",
+                            "NetworkInterfaceId": "eni-490e2c11",
+                            "PrivateIpAddresses": [
+                                {
+                                    "PrivateDnsName": "ip-10-5-1-139.eu-west-1.compute.internal",
+                                    "Primary": true,
+                                    "PrivateIpAddress": "10.5.1.139"
+                                }
+                            ],
+                            "PrivateDnsName": "ip-10-5-1-139.eu-west-1.compute.internal",
+                            "Attachment": {
+                                "Status": "attached",
+                                "DeviceIndex": 0,
+                                "DeleteOnTermination": true,
+                                "AttachmentId": "eni-attach-179e8e55",
+                                "AttachTime": "2015-07-08T07:20:50.000Z"
+                            },
+                            "Groups": [
+                                {
+                                    "GroupName": "default",
+                                    "GroupId": "sg-93070af6"
+                                }
+                            ],
+                            "SubnetId": "subnet-4b1ba512",
+                            "OwnerId": "696974783300",
+                            "PrivateIpAddress": "10.5.1.139"
+                        }
+                    ],
+                    "SourceDestCheck": true,
+                    "Placement": {
+                        "Tenancy": "default",
+                        "GroupName": "",
+                        "AvailabilityZone": "eu-west-1a"
+                    },
+                    "Hypervisor": "xen",
+                    "BlockDeviceMappings": [
+                        {
+                            "DeviceName": "/dev/xvda",
+                            "Ebs": {
+                                "Status": "attached",
+                                "DeleteOnTermination": true,
+                                "VolumeId": "vol-f6a2c5e9",
+                                "AttachTime": "2015-07-08T07:20:53.000Z"
+                            }
+                        }
+                    ],
+                    "Architecture": "x86_64",
+                    "RootDeviceType": "ebs",
+                    "RootDeviceName": "/dev/xvda",
+                    "VirtualizationType": "hvm",
+                    "Tags": [
+                        {
+                            "Value": "production",
+                            "Key": "Environment"
+                        },
+                        {
+                            "Value": "Instance7",
+                            "Key": "aws:cloudformation:logical-id"
+                        },
+                        {
+                            "Value": "ERPSystem",
+                            "Key": "Project"
+                        },
+                        {
+                            "Value": "qa",
+                            "Key": "CustomerName"
+                        },
+                        {
+                            "Value": "1.0",
+                            "Key": "Version"
+                        },
+                        {
+                            "Value": "web server",
+                            "Key": "Name"
+                        },
+                        {
+                            "Value": "HR",
+                            "Key": "Department"
+                        },
+                        {
+                            "Value": "qlstack2-labinstance-10660-aff32c3e-fbfe-4ffd-a987-5d7a4b867ba2",
+                            "Key": "aws:cloudformation:stack-name"
+                        },
+                        {
+                            "Value": "portal",
+                            "Key": "Application"
+                        },
+                        {
+                            "Value": "403",
+                            "Key": "LabName"
+                        },
+                        {
+                            "Value": "arn:aws:cloudformation:eu-west-1:696974783300:stack/qlstack2-labinstance-10660-aff32c3
+e-fbfe-4ffd-a987-5d7a4b867ba2/9cca6540-2541-11e5-b79b-5001411350b4",
+                            "Key": "aws:cloudformation:stack-id"
+                        }
+                    ],
+                    "AmiLaunchIndex": 0
+                }
+            ]
+        },
+        {
+            "OwnerId": "696974783300",
+            "ReservationId": "r-5e633ab8",
+            "Groups": [],
+            "Instances": [
+                {
+                    "Monitoring": {
+                        "State": "disabled"
+                    },
+                    "PublicDnsName": "",
+                    "State": {
+                        "Code": 16,
+                        "Name": "running"
+                    },
+                    "EbsOptimized": false,
+                    "LaunchTime": "2015-07-08T07:20:47.000Z",
+                    "PrivateIpAddress": "10.5.1.14",
+                    "ProductCodes": [],
+                    "VpcId": "vpc-b668ebd3",
+                    "StateTransitionReason": "",
+                    "InstanceId": "i-ffdf0a52",
+                    "ImageId": "ami-6e7bd919",
+                    "PrivateDnsName": "ip-10-5-1-14.eu-west-1.compute.internal",
+                    "KeyName": "qwikLABS-L403-10660",
+                    "SecurityGroups": [
+                        {
+                            "GroupName": "default",
+                            "GroupId": "sg-93070af6"
+                        }
+                    ],
+                    "ClientToken": "qlsta-Insta-1SVBXTD3P77ZQ",
+                    "SubnetId": "subnet-4b1ba512",
+                    "InstanceType": "t2.micro",
+                    "NetworkInterfaces": [
+                        {
+                            "Status": "in-use",
+                            "MacAddress": "0a:65:31:05:b2:1f",
+                            "SourceDestCheck": true,
+                            "VpcId": "vpc-b668ebd3",
+                            "Description": "",
+                            "NetworkInterfaceId": "eni-550e2c0d",
+                            "PrivateIpAddresses": [
+                                {
+                                    "PrivateDnsName": "ip-10-5-1-14.eu-west-1.compute.internal",
+                                    "Primary": true,
+                                    "PrivateIpAddress": "10.5.1.14"
+                                }
+                            ],
+                            "PrivateDnsName": "ip-10-5-1-14.eu-west-1.compute.internal",
+                            "Attachment": {
+                                "Status": "attached",
+                                "DeviceIndex": 0,
+                                "DeleteOnTermination": true,
+                                "AttachmentId": "eni-attach-019e8e43",
+                                "AttachTime": "2015-07-08T07:20:47.000Z"
+                            },
+                            "Groups": [
+                                {
+                                    "GroupName": "default",
+                                    "GroupId": "sg-93070af6"
+                                }
+                            ],
+                            "SubnetId": "subnet-4b1ba512",
+                            "OwnerId": "696974783300",
+                            "PrivateIpAddress": "10.5.1.14"
+                        }
+                    ],
+                    "SourceDestCheck": true,
+                    "Placement": {
+                        "Tenancy": "default",
+                        "GroupName": "",
+                        "AvailabilityZone": "eu-west-1a"
+                    },
+                    "Hypervisor": "xen",
+                    "BlockDeviceMappings": [
+                        {
+                            "DeviceName": "/dev/xvda",
+                            "Ebs": {
+                                "Status": "attached",
+                                "DeleteOnTermination": true,
+                                "VolumeId": "vol-16a1c609",
+                                "AttachTime": "2015-07-08T07:20:50.000Z"
+                            }
+                        }
+                    ],
+                    "Architecture": "x86_64",
+                    "RootDeviceType": "ebs",
+                    "RootDeviceName": "/dev/xvda",
+                    "VirtualizationType": "hvm",
+                    "Tags": [
+                        {
+                            "Value": "HR",
+                            "Key": "Department"
+                        },
+                        {
+                            "Value": "web server",
+                            "Key": "Name"
+                        },
+                        {
+                            "Value": "Instance3",
+                            "Key": "aws:cloudformation:logical-id"
+                        },
+                        {
+                            "Value": "qlstack2-labinstance-10660-aff32c3e-fbfe-4ffd-a987-5d7a4b867ba2",
+                            "Key": "aws:cloudformation:stack-name"
+                        },
+                        {
+                            "Value": "arn:aws:cloudformation:eu-west-1:696974783300:stack/qlstack2-labinstance-10660-aff32c3
+e-fbfe-4ffd-a987-5d7a4b867ba2/9cca6540-2541-11e5-b79b-5001411350b4",
+                            "Key": "aws:cloudformation:stack-id"
+                        },
+                        {
+                            "Value": "portal",
+                            "Key": "Application"
+                        },
+                        {
+                            "Value": "1.0",
+                            "Key": "Version"
+                        },
+                        {
+                            "Value": "ERPSystem",
+                            "Key": "Project"
+                        },
+                        {
+                            "Value": "staging",
+                            "Key": "Environment"
+                        },
+                        {
+                            "Value": "qa",
+                            "Key": "CustomerName"
+                        },
+                        {
+                            "Value": "403",
+                            "Key": "LabName"
+                        }
+                    ],
+                    "AmiLaunchIndex": 0
+                }
+            ]
+        }
+    ]
+}
+
+PS C:\Windows\system32> aws ec2 describe-instances --filter "Name=tag:Project,Values=ERPSystem" --query 'Reservations[*].Instances[*].InstanceId'
+[
+    [
+        "i-48df0ae5"
+    ],
+    [
+        "i-fcdf0a51"
+    ],
+    [
+        "i-d0df0a7d"
+    ],
+    [
+        "i-e3de0b4e"
+    ],
+    [
+        "i-27de0b8a"
+    ],
+    [
+        "i-e0de0b4d"
+    ],
+    [
+        "i-fedf0a53"
+    ],
+    [
+        "i-ffdf0a52"
+    ]
+]
+
+PS C:\Windows\system32> aws ec2 describe-instances --filter "Name=tag:Project,Values=ERPSystem" --query 'Reservations[*].Instances[*].{ID:InstanceId,AZ:Placement.AvailabilityZone}'
+[
+    [
+        {
+            "AZ": "eu-west-1a",
+            "ID": "i-48df0ae5"
+        }
+    ],
+    [
+        {
+            "AZ": "eu-west-1a",
+            "ID": "i-fcdf0a51"
+        }
+    ],
+    [
+        {
+            "AZ": "eu-west-1a",
+            "ID": "i-d0df0a7d"
+        }
+    ],
+    [
+        {
+            "AZ": "eu-west-1a",
+            "ID": "i-e3de0b4e"
+        }
+    ],
+    [
+        {
+            "AZ": "eu-west-1a",
+            "ID": "i-27de0b8a"
+        }
+    ],
+    [
+        {
+            "AZ": "eu-west-1a",
+            "ID": "i-e0de0b4d"
+        }
+    ],
+    [
+        {
+            "AZ": "eu-west-1a",
+            "ID": "i-fedf0a53"
+        }
+    ],
+    [
+        {
+            "AZ": "eu-west-1a",
+            "ID": "i-ffdf0a52"
+        }
+    ]
+]
+
+PS C:\Windows\system32> aws ec2 describe-instances --filter "Name=tag:Project,Values=ERPSystem" --query 'Reservations[*].Instances[*].{ID:InstanceId,AZ:Placement.AvailabilityZone,Project:Tags[?Key==`Project`] | [0].Value}'
+[
+    [
+        {
+            "Project": "ERPSystem",
+            "AZ": "eu-west-1a",
+            "ID": "i-48df0ae5"
+        }
+    ],
+    [
+        {
+            "Project": "ERPSystem",
+            "AZ": "eu-west-1a",
+            "ID": "i-fcdf0a51"
+        }
+    ],
+    [
+        {
+            "Project": "ERPSystem",
+            "AZ": "eu-west-1a",
+            "ID": "i-d0df0a7d"
+        }
+    ],
+    [
+        {
+            "Project": "ERPSystem",
+            "AZ": "eu-west-1a",
+            "ID": "i-e3de0b4e"
+        }
+    ],
+    [
+        {
+            "Project": "ERPSystem",
+            "AZ": "eu-west-1a",
+            "ID": "i-27de0b8a"
+        }
+    ],
+    [
+        {
+            "Project": "ERPSystem",
+            "AZ": "eu-west-1a",
+            "ID": "i-e0de0b4d"
+        }
+    ],
+    [
+        {
+            "Project": "ERPSystem",
+            "AZ": "eu-west-1a",
+            "ID": "i-fedf0a53"
+        }
+    ],
+    [
+        {
+            "Project": "ERPSystem",
+            "AZ": "eu-west-1a",
+            "ID": "i-ffdf0a52"
+        }
+    ]
+]
+
+PS C:\Windows\system32> aws ec2 describe-instances --filter "Name=tag:Project,Values=ERPSystem" --query 'Reservations[*].Instances[*].{ID:InstanceId,AZ:Placement.AvailabilityZone,Project:Tags[?Key==`Project`] | [0].Value,Environment:Tags[?Key==`Environment`] | [0].Value,Version:Tags[?Key==`Version`] | [0].Value}'
+[
+    [
+        {
+            "Project": "ERPSystem",
+            "Environment": "staging",
+            "AZ": "eu-west-1a",
+            "Version": "1.0",
+            "ID": "i-48df0ae5"
+        }
+    ],
+    [
+        {
+            "Project": "ERPSystem",
+            "Environment": "development",
+            "AZ": "eu-west-1a",
+            "Version": "1.0",
+            "ID": "i-fcdf0a51"
+        }
+    ],
+    [
+        {
+            "Project": "ERPSystem",
+            "Environment": "development",
+            "AZ": "eu-west-1a",
+            "Version": "1.0",
+            "ID": "i-d0df0a7d"
+        }
+    ],
+    [
+        {
+            "Project": "ERPSystem",
+            "Environment": "staging",
+            "AZ": "eu-west-1a",
+            "Version": "1.0",
+            "ID": "i-e3de0b4e"
+        }
+    ],
+    [
+        {
+            "Project": "ERPSystem",
+            "Environment": "production",
+            "AZ": "eu-west-1a",
+            "Version": "1.0",
+            "ID": "i-27de0b8a"
+        }
+    ],
+    [
+        {
+            "Project": "ERPSystem",
+            "Environment": "production",
+            "AZ": "eu-west-1a",
+            "Version": "1.0",
+            "ID": "i-e0de0b4d"
+        }
+    ],
+    [
+        {
+            "Project": "ERPSystem",
+            "Environment": "production",
+            "AZ": "eu-west-1a",
+            "Version": "1.0",
+            "ID": "i-fedf0a53"
+        }
+    ],
+    [
+        {
+            "Project": "ERPSystem",
+            "Environment": "staging",
+            "AZ": "eu-west-1a",
+            "Version": "1.0",
+            "ID": "i-ffdf0a52"
+        }
+    ]
+]
+
+PS C:\Windows\system32> aws ec2 describe-instances --filter "Name=tag:Project,Values=ERPSystem" "Name=tag:Environment,Values=development" --query 'Reservations[*].Instances[*].{ID:InstanceId,AZ:Placement.AvailabilityZone,Project:Tags[?Key==`Project`] | [0].Value,Environment:Tags[?Key==`Environment`] | [0].Value,Version:Tags[?Key==`Version`] | [0].Value}'
+[
+    [
+        {
+            "Project": "ERPSystem",
+            "Environment": "development",
+            "AZ": "eu-west-1a",
+            "Version": "1.0",
+            "ID": "i-fcdf0a51"
+        }
+    ],
+    [
+        {
+            "Project": "ERPSystem",
+            "Environment": "development",
+            "AZ": "eu-west-1a",
+            "Version": "1.0",
+            "ID": "i-d0df0a7d"
+        }
+    ]
+]
+
+              CurrentMatchIndex               ReplacementIndex              ReplacementLength CompletionMatches
+              -----------------               ----------------              ----------------- -----------------
+                             -1                           2373                              4 {System.Management.Automati...
+
+
+
+PS C:\Windows\system32> get-content "C:\temp\change-resource-tags.ps1"
+$instances = aws ec2 describe-instances --filter "Name=tag:Project,Values=ERPSystem" "Name=tag:Environment,Values=developmen
+t" --query 'Reservations[*].Instances[*].InstanceId' --output text
+
+$instances = $instances.split("\n")
+
+aws ec2 create-tags --resources $instances --tags 'Key=Version,Value=1.1'
+
+PS C:\Windows\system32> C:\temp\change-resource-tags.ps1
+
+PS C:\Windows\system32> aws ec2 describe-instances --filter "Name=tag:Project,Values=ERPSystem" --query 'Reservations[*].Instances[*].{ID:InstanceId,AZ:Placement.AvailabilityZone,Project:Tags[?Key==`Project`] | [0].Value,Environment:Tags[?Key==`Environment`] | [0].Value,Version:Tags[?Key==`Version`] | [0].Value}'
+[
+    [
+        {
+            "Project": "ERPSystem",
+            "Environment": "staging",
+            "AZ": "eu-west-1a",
+            "Version": "1.0",
+            "ID": "i-48df0ae5"
+        }
+    ],
+    [
+        {
+            "Project": "ERPSystem",
+            "Environment": "development",
+            "AZ": "eu-west-1a",
+            "Version": "1.1",
+            "ID": "i-fcdf0a51"
+        }
+    ],
+    [
+        {
+            "Project": "ERPSystem",
+            "Environment": "development",
+            "AZ": "eu-west-1a",
+            "Version": "1.1",
+            "ID": "i-d0df0a7d"
+        }
+    ],
+    [
+        {
+            "Project": "ERPSystem",
+            "Environment": "staging",
+            "AZ": "eu-west-1a",
+            "Version": "1.0",
+            "ID": "i-e3de0b4e"
+        }
+    ],
+    [
+        {
+            "Project": "ERPSystem",
+            "Environment": "production",
+            "AZ": "eu-west-1a",
+            "Version": "1.0",
+            "ID": "i-27de0b8a"
+        }
+    ],
+    [
+        {
+            "Project": "ERPSystem",
+            "Environment": "production",
+            "AZ": "eu-west-1a",
+            "Version": "1.0",
+            "ID": "i-e0de0b4d"
+        }
+    ],
+    [
+        {
+            "Project": "ERPSystem",
+            "Environment": "production",
+            "AZ": "eu-west-1a",
+            "Version": "1.0",
+            "ID": "i-fedf0a53"
+        }
+    ],
+    [
+        {
+            "Project": "ERPSystem",
+            "Environment": "staging",
+            "AZ": "eu-west-1a",
+            "Version": "1.0",
+            "ID": "i-ffdf0a52"
+        }
+    ]
+]
