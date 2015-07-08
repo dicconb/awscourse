@@ -10,6 +10,34 @@
       "Description" : "The CIDR block range for SSH."
     }		
   },
+  "Mappings" : {
+		"AmazonLinuxAMI" : {
+		"us-east-1": {
+		        "AMI": "ami-b66ed3de"
+		},
+		"us-west-1": {
+		   "AMI": "ami-4b6f650e"
+		      },
+		      "us-west-2": {
+		        "AMI": "ami-b5a7ea85"
+		      },
+		      "eu-west-1": {
+		        "AMI": "ami-6e7bd919"
+		      },
+		      "sa-east-1": {
+		        "AMI": "ami-8737829a"
+		      },
+		      "ap-southeast-1": {
+		        "AMI": "ami-ac5c7afe"
+		      },
+		      "ap-southeast-2": {
+		        "AMI": "ami-63f79559"
+		      },
+		      "ap-northeast-1": {
+		        "AMI": "ami-4985b048"
+		      }
+		    }
+	},
   "Resources": {
     "vpc970685f2": {
       "Type": "AWS::EC2::VPC",
@@ -224,8 +252,15 @@
       "Properties": {
         "DisableApiTermination": "false",
         "InstanceInitiatedShutdownBehavior": "stop",
-        "ImageId": "ami-6e7bd919",
-        "InstanceType": "t2.small",
+        "ImageId" : {
+          "Fn::FindInMap" : [
+            "AmazonLinuxAMI", {
+              "Ref" : "AWS::Region"
+            },
+            "AMI"
+          ]
+        },
+	"InstanceType": "t2.small",
         "Monitoring": "false",
         "UserData" : {
 		"Fn::Base64" : {
@@ -293,8 +328,15 @@
       "Properties": {
         "DisableApiTermination": "false",
         "InstanceInitiatedShutdownBehavior": "stop",
-        "ImageId": "ami-6e7bd919",
-        "InstanceType": "t2.micro",
+        "ImageId" : {
+          "Fn::FindInMap" : [
+            "AmazonLinuxAMI", {
+              "Ref" : "AWS::Region"
+            },
+            "AMI"
+          ]
+        },
+	"InstanceType": "t2.micro",
         "KeyName" : {
           "Ref" : "BastionKeyName"
         },
@@ -489,15 +531,6 @@
         "InstanceId": {
           "Ref": "instanceic843d962"
         }
-      }
-    },
-    "dchpassoc1": {
-      "Type": "AWS::EC2::VPCDHCPOptionsAssociation",
-      "Properties": {
-        "VpcId": {
-          "Ref": "vpc970685f2"
-        },
-        "DhcpOptionsId": "dopt-64fc0f0f"
       }
     },
     "ingress1": {
